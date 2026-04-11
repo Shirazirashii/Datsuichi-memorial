@@ -1,24 +1,579 @@
-import React, { useEffect, useRef, useState } from 'react';
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI勉強会『ダツイチ！』〜村人から始まった冒険の軌跡〜</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --parchment:#F4EEDD;
+      --parchment-dark:#E8D9B8;
+      --blue-deep:#1a2a6c;
+      --blue-mid:#2d4a9e;
+      --blue-light:#4a6fd4;
+      --gold:#FFD700;
+      --gold-dark:#C8A200;
+      --black:#111;
+      --red:#c0392b;
+      --green:#27ae60;
+    }
+    body{
+      background-color:var(--parchment);
+      font-family:'Noto Sans JP',sans-serif;
+      color:var(--black);
+      overflow-x:hidden;
+    }
+    .pixel-btn{
+      display:inline-block;
+      padding:14px 28px;
+      font-family:'Noto Sans JP',sans-serif;
+      font-weight:900;
+      font-size:1rem;
+      cursor:pointer;
+      border:4px solid var(--black);
+      box-shadow:6px 6px 0 var(--black);
+      transition:transform .1s,box-shadow .1s;
+      text-decoration:none;
+      letter-spacing:.05em;
+    }
+    .pixel-btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--black)}
+    .pixel-btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
+    .btn-start{background:var(--gold);color:var(--black);animation:blink-btn 1.2s step-end infinite}
+    .btn-next{background:var(--blue-deep);color:var(--gold)}
+    .btn-share{background:var(--green);color:#fff}
+    @keyframes blink-btn{0%,100%{opacity:1}50%{opacity:.4}}
 
-export default function App() {
-  const starsRef = useRef<HTMLDivElement>(null);
-  const [showShare, setShowShare] = useState(false);
+    .fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .fade-in.visible{opacity:1;transform:none}
 
-  useEffect(() => {
-    // Stars
-    if (starsRef.current) {
-      starsRef.current.innerHTML = ''; // Clear existing stars in case of re-render
+    .section-title{
+      font-size:1.6rem;font-weight:900;color:var(--blue-deep);
+      border-left:8px solid var(--gold-dark);
+      padding-left:14px;margin-bottom:28px;line-height:1.4;
+    }
+    .img-placeholder{
+      background:#ddd;border:4px solid var(--black);
+      box-shadow:6px 6px 0 var(--black);
+      display:flex;align-items:center;justify-content:center;
+      color:#777;font-size:.85rem;font-weight:700;text-align:center;padding:20px;
+      margin-bottom:28px;
+    }
+    .pixel-divider{
+      height:12px;
+      background:repeating-linear-gradient(90deg,var(--gold-dark) 0,var(--gold-dark) 12px,var(--black) 12px,var(--black) 24px);
+    }
+
+    /* HERO */
+    #hero{
+      position:relative;min-height:100vh;background:var(--blue-deep);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      padding:40px 20px;overflow:hidden;max-width:100%;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px),
+      repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px);
+    }
+    .hero-stars{position:absolute;inset:0;overflow:hidden}
+    .star{position:absolute;width:3px;height:3px;background:#fff;animation:twinkle 2s step-end infinite}
+    @keyframes twinkle{0%,100%{opacity:1}50%{opacity:0}}
+    .hero-image-wrap{
+      width:100vw;max-width:100vw;margin-bottom:24px;
+      overflow:hidden;background:#111;
+      -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+      mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
+    }
+    .hero-logo{
+      font-size:clamp(2.5rem,8vw,4.5rem);font-weight:900;color:var(--gold);
+      text-shadow:3px 3px 0 var(--gold-dark),6px 6px 0 rgba(0,0,0,.5);
+      text-align:center;margin-bottom:10px;line-height:1.3;
+    }
+    .hero-sub{
+      color:#cce0ff;font-size:clamp(.85rem,2.5vw,1.05rem);
+      text-align:center;margin-bottom:24px;line-height:1.8;max-width:560px;
+    }
+    .hero-tag{
+      display:inline-block;background:rgba(255,215,0,.15);
+      border:2px solid var(--gold);color:var(--gold);
+      font-size:.8rem;font-weight:700;padding:3px 10px;margin-bottom:10px;letter-spacing:.08em;
+    }
+
+    /* INTRO */
+    #intro{padding:60px 20px;max-width:900px;margin:0 auto}
+    .rpg-window{
+      background:var(--blue-deep);border:4px solid var(--gold-dark);
+      box-shadow:6px 6px 0 var(--gold-dark);padding:24px;margin-bottom:32px;position:relative;
+    }
+    .rpg-window::before{
+      content:'';position:absolute;top:4px;left:4px;right:4px;bottom:4px;
+      border:2px solid rgba(255,215,0,.3);pointer-events:none;
+    }
+    .rpg-window-title{color:var(--gold);font-weight:900;font-size:1.1rem;margin-bottom:12px}
+    .rpg-window p{color:#cce0ff;line-height:1.9;font-size:.95rem}
+
+    /* ADVENTURE */
+    #adventure{
+      background:linear-gradient(180deg,var(--parchment) 0%,var(--parchment-dark) 100%);
+      padding:60px 20px;
+    }
+    #adventure>div{max-width:900px;margin:0 auto}
+
+    /* MAP PATH */
+    .map-path{display:flex;flex-direction:column;gap:0;position:relative}
+    .map-path::before{
+      content:'';position:absolute;left:42px;top:60px;bottom:60px;width:4px;
+      background:repeating-linear-gradient(180deg,var(--gold-dark) 0,var(--gold-dark) 8px,transparent 8px,transparent 16px);
+    }
+
+    /* DAY CARD */
+    .day-card{
+      display:flex;gap:20px;align-items:flex-start;
+      margin-bottom:28px;position:relative;
+    }
+    .day-icon{
+      flex-shrink:0;width:86px;height:86px;
+      background:var(--blue-deep);border:4px solid var(--gold-dark);
+      box-shadow:5px 5px 0 var(--gold-dark);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      font-size:2rem;position:relative;z-index:1;overflow:hidden;
+    }
+    .day-num{font-size:.6rem;color:var(--gold);font-weight:900;margin-top:4px;letter-spacing:.04em}
+    .day-body{
+      flex:1;background:#fff;border:4px solid var(--black);
+      box-shadow:6px 6px 0 var(--black);padding:18px 20px;
+    }
+    .day-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+    .day-badge{
+      background:var(--blue-deep);color:var(--gold);
+      font-size:.65rem;font-weight:900;padding:3px 10px;letter-spacing:.06em;white-space:nowrap;
+    }
+    .day-phase-label{
+      font-size:.7rem;font-weight:700;color:#888;letter-spacing:.04em;
+    }
+    .day-title{
+      font-size:1.05rem;font-weight:900;color:var(--blue-deep);
+      margin-bottom:10px;line-height:1.4;
+    }
+    .day-class{
+      display:inline-block;background:var(--parchment);border:2px solid var(--gold-dark);
+      font-size:.7rem;font-weight:700;color:var(--gold-dark);
+      padding:2px 10px;margin-bottom:10px;
+    }
+    .day-text{font-size:.88rem;line-height:1.85;color:#444}
+    .day-img{
+      background:#ddd;border:3px solid #bbb;
+      display:flex;align-items:center;justify-content:center;
+      color:#888;font-size:.75rem;font-weight:700;text-align:center;
+      padding:10px;margin-bottom:10px;height:64px;
+    }
+    .exp-bar-wrap{margin-top:20px}
+    .exp-label{font-size:.85rem;font-weight:700;color:#555;margin-bottom:6px}
+    .exp-bar{height:16px;background:#e0e0e0;border:2px solid var(--black);overflow:hidden}
+    .exp-fill{
+      height:100%;
+      background:repeating-linear-gradient(-45deg,var(--gold) 0,var(--gold) 10px,var(--gold-dark) 10px,var(--gold-dark) 20px);
+      width:0;transition:width 1.5s ease;
+    }
+    .exp-fill.max{
+      background:repeating-linear-gradient(-45deg,#FFD700 0,#FFD700 10px,#ff9900 10px,#ff9900 20px);
+    }
+
+    /* chapter separator */
+    .chapter-sep{
+      display:flex;align-items:center;gap:12px;
+      margin:8px 0 20px 0;
+    }
+    .chapter-sep-line{flex:1;height:3px;background:repeating-linear-gradient(90deg,var(--gold-dark) 0,var(--gold-dark) 8px,transparent 8px,transparent 14px)}
+    .chapter-sep-label{
+      background:var(--blue-deep);color:var(--gold);
+      font-size:.75rem;font-weight:900;padding:5px 14px;
+      border:3px solid var(--gold-dark);white-space:nowrap;
+    }
+
+    /* PARTY */
+    #party{background:var(--blue-deep);padding:60px 20px;max-width:100%}
+    #party>div{max-width:900px;margin:0 auto}
+    #party .section-title{color:var(--gold)}
+    .party-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:16px}
+    @media(max-width:600px){
+      .party-grid{grid-template-columns:1fr;}
+    }
+    .party-card{
+      background:#fff;border:4px solid var(--gold-dark);
+      box-shadow:6px 6px 0 var(--gold-dark);padding:20px 16px;
+    }
+    .party-avatar{
+      width:64px;height:64px;background:#ddd;border:3px solid var(--black);
+      margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:2rem;
+    }
+    .party-name{font-weight:900;font-size:1rem;color:var(--blue-deep);margin-bottom:6px}
+    .party-role{
+      display:inline-block;background:var(--blue-deep);color:var(--gold);
+      font-size:.65rem;font-weight:700;padding:2px 8px;margin-bottom:10px;
+    }
+    .party-skill{
+      background:var(--parchment);border:2px solid var(--black);
+      font-size:.75rem;padding:4px 8px;margin-bottom:8px;font-weight:700;
+    }
+    .party-quote{font-size:.8rem;color:#555;line-height:1.6;font-style:italic}
+
+    /* ENDING */
+    #ending{
+      position:relative;
+      text-align:center;
+      background:url('images/ending.jpeg') center/cover no-repeat, linear-gradient(180deg,var(--parchment-dark),var(--parchment));
+      padding:120px 20px;
+      max-width:100%;
+    }
+    .ending-overlay{
+      position:absolute;inset:0;background:rgba(0,0,0,0.65);z-index:0;
+    }
+    #ending>div{position:relative;z-index:1;max-width:700px;margin:0 auto}
+    .ending-title{
+      font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:var(--gold);
+      margin-bottom:20px;text-shadow:3px 3px 0 #000;
+    }
+    .ending-text{font-size:1rem;line-height:2;color:#fff;margin-bottom:36px;text-shadow:1px 1px 0 #000;font-weight:700;}
+    .btn-group{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+    footer{
+      background:var(--blue-deep);color:var(--gold);
+      text-align:center;padding:24px 20px;font-size:.8rem;font-weight:700;letter-spacing:.1em;
+    }
+
+    @media(max-width:600px){
+      .map-path::before{left:30px}
+      .day-icon{width:64px;height:64px;font-size:1.6rem}
+      .day-card{gap:12px}
+      .pixel-btn{padding:12px 18px;font-size:.9rem}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-stars" id="stars"></div>
+    <h1 class="hero-logo fade-in">
+      AI勉強会『ダツイチ！』<br />
+      <span style="font-size: .65em; color: #cce0ff;">〜村人から始まった冒険の軌跡〜</span>
+    </h1>
+    <div class="hero-image-wrap fade-in">
+      <div style="padding: 60px 20px; background: #111; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
+        <img src="images/herovisual.jpeg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" />
+      </div>
+    </div>
+    <p class="hero-sub fade-in">
+      ビジネスの最前線を走る私たちが、「一般利用」という平和な村を抜け出した。<br />
+      <br />これは、AIの真の力を引き出すために学んだ全6回の冒険の記録。
+    </p>
+    <a href="#intro" class="pixel-btn btn-start fade-in" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;">
+      ▶ 冒険の書を開く（START）
+    </a>
+  </div>
+
+  <div class="pixel-divider"></div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="fade-in img-placeholder" style="height: 180px; border: none; box-shadow: none; background: transparent; color: #aaa;">
+      [🍺 古びた酒場でギルドマスターが地図を広げているドット絵]
+    </div>
+    <div class="fade-in">
+      <h2 class="section-title">なぜ我々は、安全な「村」を出たのか？</h2>
+      <div class="rpg-window">
+        <div class="rpg-window-title">📜 プロローグ</div>
+        <p>
+          ChatGPTをはじめとするAIツール。多くの人が「便利なおしゃべりツール」として日常使いする中、我々は気づいていた。<br /><br />
+          「AIの本当の力は、こんなものではないはずだ」と。<br /><br />
+          この『ダツイチ！（脱・一般利用）』は、ただの操作説明会ではない。自らの手で呪文（プロンプト）を紡ぎ、AIという強力な相棒と共に未知の領域を切り拓くための、過酷で熱い鍛錬の記録である。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider"></div>
+
+  <!-- ADVENTURE -->
+  <div id="adventure">
+    <div>
+      <h2 class="section-title fade-in" style="margin-bottom: 36px;">⚔️ 冒険の記録 — Day 1〜Day 6</h2>
+
+      <div class="map-path">
+
+        <!-- ── 序盤 ── -->
+        <div class="chapter-sep fade-in">
+          <div class="chapter-sep-line"></div>
+          <div class="chapter-sep-label">📖 第1章：序盤（村人 → 見習い）</div>
+          <div class="chapter-sep-line"></div>
+        </div>
+
+        <!-- Day 1 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day1.jpeg" alt="Day 1" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 1</span>
+              <span class="day-phase-label">序盤 ／ 村人</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv0.jpeg" alt="Day1" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class">クラス：村人</div>
+                <h3 class="day-title">旅立ち — AIという地図を手にした日</h3>
+                <p class="day-text">
+                  まずは己の現在地を知ることから始まった。AIの基礎という名の「地図」を広げ、何ができて何ができないのかを学ぶ。まだ見ぬ魔法の力に胸を躍らせながら、第一歩を踏み出した。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 17%</div>
+              <div class="exp-bar"><div class="exp-fill" data-width="17"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day2.jpeg" alt="Day 2" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 2</span>
+              <span class="day-phase-label">序盤 ／ 見習い</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv1.jpeg" alt="Day2" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class">クラス：見習い</div>
+                <h3 class="day-title">最初の武器 — ひのきの棒（基礎スキル）を得る</h3>
+                <p class="day-text">
+                  基礎を磨き、最初の「武器」を手にした日。AIとの会話の作法を覚え、簡単なプロンプトで思い通りの答えを引き出すことができるようになってきた。見習いとしての自信が芽生え始める。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 33%</div>
+              <div class="exp-bar"><div class="exp-fill" data-width="33"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 中盤 ── -->
+        <div class="chapter-sep fade-in">
+          <div class="chapter-sep-line"></div>
+          <div class="chapter-sep-label">⚔️ 第2章：中盤（探索者 → 冒険者）</div>
+          <div class="chapter-sep-line"></div>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day3.jpeg" alt="Day 3" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 3</span>
+              <span class="day-phase-label">中盤 ／ 探索者</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv2.jpeg" alt="Day3" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class">クラス：探索者</div>
+                <h3 class="day-title">ダンジョン突入 — 呪文（プロンプト）の詠唱開始</h3>
+                <p class="day-text">
+                  実践のダンジョンへ突入。自らの言葉（プロンプト）でAIを操ろうとするが、思い通りの結果が返ってこない。「中ボス」の壁を前に、試行錯誤が続く。それでも前に進む探索者の目は輝いていた。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 50%</div>
+              <div class="exp-bar"><div class="exp-fill" data-width="50"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day4.jpeg" alt="Day 4" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 4</span>
+              <span class="day-phase-label">中盤 ／ 冒険者</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv3.jpeg" alt="Day4" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class">クラス：冒険者</div>
+                <h3 class="day-title">中ボス撃破 — 仲間との情報共有で壁を越える</h3>
+                <p class="day-text">
+                  幾度も跳ね返されてきた「中ボス」に、ついに一撃を与える。仲間との情報共有と試行錯誤が実を結び、確実に「冒険者」としての経験値（EXP）を積んでいった。パーティの絆が深まった日。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 66%</div>
+              <div class="exp-bar"><div class="exp-fill" data-width="66"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 終盤 ── -->
+        <div class="chapter-sep fade-in">
+          <div class="chapter-sep-line"></div>
+          <div class="chapter-sep-label">✨ 第3章：終盤（冒険者 → 勇者候補）</div>
+          <div class="chapter-sep-line"></div>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day5.jpeg" alt="Day 5" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 5</span>
+              <span class="day-phase-label">終盤 ／ 冒険者（上級）</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv3-4.jpeg" alt="Day5" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class">クラス：冒険者（上級）</div>
+                <h3 class="day-title">最終試練へ — それぞれのビジネスにAIを宿す</h3>
+                <p class="day-text">
+                  これまでの鍛錬の集大成。自分のビジネスや日常においてAIをどう駆使するか、具体的な戦略を描き始めた。それぞれの「必殺技」が形になりつつある。クライマックスへの助走が始まった。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 83%</div>
+              <div class="exp-bar"><div class="exp-fill" data-width="83"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 6 -->
+        <div class="day-card fade-in">
+          <div class="day-icon"><img src="images/icon-day6.jpeg" alt="Day 6" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-body">
+            <div class="day-header">
+              <span class="day-badge">DAY 6</span>
+              <span class="day-phase-label" style="color: var(--gold-dark); font-weight: 900;">★ FINAL ／ 勇者候補</span>
+            </div>
+            <div class="flex flex-col md:flex-row gap-5 items-start">
+              <img src="images/Lv4.jpeg" alt="Day6" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <div class="flex-1">
+                <div class="day-class" style="border-color: var(--gold-dark); color: var(--gold-dark);">クラス：勇者候補 ★LEVEL UP!</div>
+                <h3 class="day-title">宣誓 — 勇者候補への、クラスチェンジ！</h3>
+                <p class="day-text">
+                  自らの口で高らかに宣言する最終試練。「これからAIをこう使う」という誓いの言葉がホールに響き渡った。ここに集った「村人」たちは、ついに自立した「勇者候補」へとクラスチェンジを果たした。
+                </p>
+              </div>
+            </div>
+            <div class="exp-bar-wrap">
+              <div class="exp-label">EXP 100% ★★ HERO CANDIDATE ★★</div>
+              <div class="exp-bar"><div class="exp-fill max" data-width="100"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /map-path -->
+    </div>
+  </div>
+
+  <div class="pixel-divider"></div>
+
+  <!-- PARTY -->
+  <div id="party">
+    <div>
+      <h2 class="section-title fade-in">🛡️ クエストを共にした、誇り高きパーティ</h2>
+      <div class="party-grid">
+        <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
+            <img src="images/gm-seiryu.jpeg" alt="青龍" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          </div>
+          <div class="flex-1 text-left">
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（青龍）</div>
+            <p class="party-quote" style="text-align: left;">「よくぞここまで辿り着いた。<br />お前たちの本当の冒険はこれからだ」</p>
+          </div>
+        </div>
+        <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
+            <img src="images/gm-byakko.jpeg" alt="白虎" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          </div>
+          <div class="flex-1 text-left">
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（白虎）</div>
+            <p class="party-quote" style="text-align: left;">「風の導きがあらんことを。<br />新たな呪文を紡ぐのだ」</p>
+          </div>
+        </div>
+        <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
+            <img src="images/gm-suzaku.jpeg" alt="朱雀" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          </div>
+          <div class="flex-1 text-left">
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（朱雀）</div>
+            <p class="party-quote" style="text-align: left;">「情熱の炎を絶やすな。<br />AIは君の熱意に応えるだろう」</p>
+          </div>
+        </div>
+        <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
+          <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
+            <img src="images/gm-genbu.jpeg" alt="玄武" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+          </div>
+          <div class="flex-1 text-left">
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（玄武）</div>
+            <p class="party-quote" style="text-align: left;">「強固な意志を持て。<br />壁にぶつかった時こそ成長の好機だ」</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pixel-divider"></div>
+
+  <!-- ENDING -->
+  <div id="ending">
+    <div class="ending-overlay"></div>
+    <div style="position: relative; z-index: 1;">
+      <h2 class="ending-title fade-in">To Be Continued...<br /><span style="font-size: .7em; color: #ddd;">冒険は終わらない。</span></h2>
+      <p class="ending-text fade-in">
+        全6回の勉強会『ダツイチ！』は幕を閉じた。<br />
+        しかし、AIの進化が止まらない限り、我々の旅も終わることはない。<br />
+        勇者候補たちはそれぞれのフィールドへ散り、<br />今日も新たな呪文を詠唱し続けている。
+      </p>
+      <div class="btn-group fade-in">
+        <a href="#" class="pixel-btn btn-next">▶ 次のクエストを見る</a>
+        <div style="position: relative; display: inline-block;">
+          <button id="share-btn" class="pixel-btn btn-share">
+            📢 冒険の記録をシェアする
+          </button>
+          <div id="share-menu" style="display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 10px; background: #fff; border: 4px solid var(--black); padding: 10px; gap: 10px; box-shadow: 4px 4px 0 var(--black); z-index: 10;">
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #1877F2; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">FB</a>
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #000; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">X</a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #E1306C; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">IG</a>
+            <a href="https://line.me/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #06C755; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">LINE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © AI勉強会『ダツイチ！』
+  </footer>
+
+  <script>
+    // Stars Animation
+    const starsContainer = document.getElementById('stars');
+    if (starsContainer) {
       for (let i = 0; i < 60; i++) {
         const s = document.createElement('div');
         s.className = 'star';
         s.style.left = Math.random() * 100 + '%';
         s.style.top = Math.random() * 100 + '%';
         s.style.animationDelay = Math.random() * 2 + 's';
-        starsRef.current.appendChild(s);
+        starsContainer.appendChild(s);
       }
     }
 
-    // Scroll fade
+    // Scroll Fade-in Animation
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
@@ -29,11 +584,11 @@ export default function App() {
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-in').forEach((el) => obs.observe(el));
 
-    // EXP bars
+    // EXP Bar Animation
     const expObs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          const fill = e.target.querySelector('.exp-fill') as HTMLElement;
+          const fill = e.target.querySelector('.exp-fill');
           if (fill) {
             const w = fill.dataset.width + '%';
             fill.style.width = '0';
@@ -45,326 +600,19 @@ export default function App() {
     }, { threshold: 0.3 });
     document.querySelectorAll('.day-card').forEach((el) => expObs.observe(el));
 
-    return () => {
-      obs.disconnect();
-      expObs.disconnect();
-    };
-  }, []);
-
-  const handleStartClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    document.querySelector('#intro')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  return (
-    <>
-      {/* HERO */}
-      <div id="hero">
-        <div className="hero-bg"></div>
-        <div className="hero-stars" id="stars" ref={starsRef}></div>
-        <h1 className="hero-logo fade-in">
-          AI勉強会『ダツイチ！』<br />
-          <span style={{ fontSize: '.65em', color: '#cce0ff' }}>〜村人から始まった冒険の軌跡〜</span>
-        </h1>
-        <div className="hero-image-wrap fade-in">
-          <div style={{ padding: '60px 20px', background: '#111', minHeight: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', color: '#aaa' }}>
-            <img src="images/herovisual.jpeg" alt="ヒーローヴィジュアル" style={{ maxWidth: '100%', height: 'auto' }} />
-          </div>
-        </div>
-        <p className="hero-sub fade-in">
-          ビジネスの最前線を走る私たちが、「一般利用」という平和な村を抜け出した。<br />
-          <br />これは、AIの真の力を引き出すために学んだ全6回の冒険の記録。
-        </p>
-        <a href="#intro" className="pixel-btn btn-start fade-in" onClick={handleStartClick}>
-          ▶ 冒険の書を開く（START）
-        </a>
-      </div>
-
-      <div className="pixel-divider"></div>
-
-      {/* INTRO */}
-      <section id="intro">
-        <div className="fade-in img-placeholder" style={{ height: '180px', border: 'none', boxShadow: 'none', background: 'transparent', color: '#aaa' }}>
-          [🍺 古びた酒場でギルドマスターが地図を広げているドット絵]
-        </div>
-        <div className="fade-in">
-          <h2 className="section-title">なぜ我々は、安全な「村」を出たのか？</h2>
-          <div className="rpg-window">
-            <div className="rpg-window-title">📜 プロローグ</div>
-            <p>
-              ChatGPTをはじめとするAIツール。多くの人が「便利なおしゃべりツール」として日常使いする中、我々は気づいていた。<br /><br />
-              「AIの本当の力は、こんなものではないはずだ」と。<br /><br />
-              この『ダツイチ！（脱・一般利用）』は、ただの操作説明会ではない。自らの手で呪文（プロンプト）を紡ぎ、AIという強力な相棒と共に未知の領域を切り拓くための、過酷で熱い鍛錬の記録である。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="pixel-divider"></div>
-
-      {/* ADVENTURE */}
-      <div id="adventure">
-        <div>
-          <h2 className="section-title fade-in" style={{ marginBottom: '36px' }}>⚔️ 冒険の記録 — Day 1〜Day 6</h2>
-
-          <div className="map-path">
-
-            {/* ── 序盤 ── */}
-            <div className="chapter-sep fade-in">
-              <div className="chapter-sep-line"></div>
-              <div className="chapter-sep-label">📖 第1章：序盤（村人 → 見習い）</div>
-              <div className="chapter-sep-line"></div>
-            </div>
-
-            {/* Day 1 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day1.jpeg" alt="Day 1" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 1</span>
-                  <span className="day-phase-label">序盤 ／ 村人</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv0.jpeg" alt="Day1" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class">クラス：村人</div>
-                    <h3 className="day-title">旅立ち — AIという地図を手にした日</h3>
-                    <p className="day-text">
-                      まずは己の現在地を知ることから始まった。AIの基礎という名の「地図」を広げ、何ができて何ができないのかを学ぶ。まだ見ぬ魔法の力に胸を躍らせながら、第一歩を踏み出した。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 17%</div>
-                  <div className="exp-bar"><div className="exp-fill" data-width="17"></div></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Day 2 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day2.jpeg" alt="Day 2" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 2</span>
-                  <span className="day-phase-label">序盤 ／ 見習い</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv1.jpeg" alt="Day2" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class">クラス：見習い</div>
-                    <h3 className="day-title">最初の武器 — ひのきの棒（基礎スキル）を得る</h3>
-                    <p className="day-text">
-                      基礎を磨き、最初の「武器」を手にした日。AIとの会話の作法を覚え、簡単なプロンプトで思い通りの答えを引き出すことができるようになってきた。見習いとしての自信が芽生え始める。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 33%</div>
-                  <div className="exp-bar"><div className="exp-fill" data-width="33"></div></div>
-                </div>
-              </div>
-            </div>
-
-            {/* ── 中盤 ── */}
-            <div className="chapter-sep fade-in">
-              <div className="chapter-sep-line"></div>
-              <div className="chapter-sep-label">⚔️ 第2章：中盤（探索者 → 冒険者）</div>
-              <div className="chapter-sep-line"></div>
-            </div>
-
-            {/* Day 3 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day3.jpeg" alt="Day 3" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 3</span>
-                  <span className="day-phase-label">中盤 ／ 探索者</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv2.jpeg" alt="Day3" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class">クラス：探索者</div>
-                    <h3 className="day-title">ダンジョン突入 — 呪文（プロンプト）の詠唱開始</h3>
-                    <p className="day-text">
-                      実践のダンジョンへ突入。自らの言葉（プロンプト）でAIを操ろうとするが、思い通りの結果が返ってこない。「中ボス」の壁を前に、試行錯誤が続く。それでも前に進む探索者の目は輝いていた。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 50%</div>
-                  <div className="exp-bar"><div className="exp-fill" data-width="50"></div></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Day 4 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day4.jpeg" alt="Day 4" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 4</span>
-                  <span className="day-phase-label">中盤 ／ 冒険者</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv3.jpeg" alt="Day4" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class">クラス：冒険者</div>
-                    <h3 className="day-title">中ボス撃破 — 仲間との情報共有で壁を越える</h3>
-                    <p className="day-text">
-                      幾度も跳ね返されてきた「中ボス」に、ついに一撃を与える。仲間との情報共有と試行錯誤が実を結び、確実に「冒険者」としての経験値（EXP）を積んでいった。パーティの絆が深まった日。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 66%</div>
-                  <div className="exp-bar"><div className="exp-fill" data-width="66"></div></div>
-                </div>
-              </div>
-            </div>
-
-            {/* ── 終盤 ── */}
-            <div className="chapter-sep fade-in">
-              <div className="chapter-sep-line"></div>
-              <div className="chapter-sep-label">✨ 第3章：終盤（冒険者 → 勇者候補）</div>
-              <div className="chapter-sep-line"></div>
-            </div>
-
-            {/* Day 5 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day5.jpeg" alt="Day 5" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 5</span>
-                  <span className="day-phase-label">終盤 ／ 冒険者（上級）</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv3-4.jpeg" alt="Day5" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class">クラス：冒険者（上級）</div>
-                    <h3 className="day-title">最終試練へ — それぞれのビジネスにAIを宿す</h3>
-                    <p className="day-text">
-                      これまでの鍛錬の集大成。自分のビジネスや日常においてAIをどう駆使するか、具体的な戦略を描き始めた。それぞれの「必殺技」が形になりつつある。クライマックスへの助走が始まった。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 83%</div>
-                  <div className="exp-bar"><div className="exp-fill" data-width="83"></div></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Day 6 */}
-            <div className="day-card fade-in">
-              <div className="day-icon"><img src="images/icon-day6.jpeg" alt="Day 6" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} /></div>
-              <div className="day-body">
-                <div className="day-header">
-                  <span className="day-badge">DAY 6</span>
-                  <span className="day-phase-label" style={{ color: 'var(--gold-dark)', fontWeight: 900 }}>★ FINAL ／ 勇者候補</span>
-                </div>
-                <div className="flex flex-col md:flex-row gap-5 items-start">
-                  <img src="images/Lv4.jpeg" alt="Day6" className="w-full md:w-1/2 shrink-0" style={{ height: 'auto', border: '3px solid var(--black)' }} />
-                  <div className="flex-1">
-                    <div className="day-class" style={{ borderColor: 'var(--gold-dark)', color: 'var(--gold-dark)' }}>クラス：勇者候補 ★LEVEL UP!</div>
-                    <h3 className="day-title">宣誓 — 勇者候補への、クラスチェンジ！</h3>
-                    <p className="day-text">
-                      自らの口で高らかに宣言する最終試練。「これからAIをこう使う」という誓いの言葉がホールに響き渡った。ここに集った「村人」たちは、ついに自立した「勇者候補」へとクラスチェンジを果たした。
-                    </p>
-                  </div>
-                </div>
-                <div className="exp-bar-wrap">
-                  <div className="exp-label">EXP 100% ★★ HERO CANDIDATE ★★</div>
-                  <div className="exp-bar"><div className="exp-fill max" data-width="100"></div></div>
-                </div>
-              </div>
-            </div>
-
-          </div>{/* /map-path */}
-        </div>
-      </div>
-
-      <div className="pixel-divider"></div>
-
-      {/* PARTY */}
-      <div id="party">
-        <div>
-          <h2 className="section-title fade-in">🛡️ クエストを共にした、誇り高きパーティ</h2>
-          <div className="party-grid">
-            <div className="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-                <img src="images/gm-seiryu.jpeg" alt="青龍" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} />
-              </div>
-              <div className="flex-1 text-left">
-                <div className="party-name" style={{ margin: '0 0 8px 0', textAlign: 'left' }}>ギルドマスター（青龍）</div>
-                <p className="party-quote" style={{ textAlign: 'left' }}>「よくぞここまで辿り着いた。<br />お前たちの本当の冒険はこれからだ」</p>
-              </div>
-            </div>
-            <div className="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-                <img src="images/gm-byakko.jpeg" alt="白虎" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} />
-              </div>
-              <div className="flex-1 text-left">
-                <div className="party-name" style={{ margin: '0 0 8px 0', textAlign: 'left' }}>ギルドマスター（白虎）</div>
-                <p className="party-quote" style={{ textAlign: 'left' }}>「風の導きがあらんことを。<br />新たな呪文を紡ぐのだ」</p>
-              </div>
-            </div>
-            <div className="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-                <img src="images/gm-suzaku.jpeg" alt="朱雀" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} />
-              </div>
-              <div className="flex-1 text-left">
-                <div className="party-name" style={{ margin: '0 0 8px 0', textAlign: 'left' }}>ギルドマスター（朱雀）</div>
-                <p className="party-quote" style={{ textAlign: 'left' }}>「情熱の炎を絶やすな。<br />AIは君の熱意に応えるだろう」</p>
-              </div>
-            </div>
-            <div className="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
-              <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-                <img src="images/gm-genbu.jpeg" alt="玄武" className="w-full h-full object-cover" onError={(e) => e.currentTarget.style.display='none'} />
-              </div>
-              <div className="flex-1 text-left">
-                <div className="party-name" style={{ margin: '0 0 8px 0', textAlign: 'left' }}>ギルドマスター（玄武）</div>
-                <p className="party-quote" style={{ textAlign: 'left' }}>「強固な意志を持て。<br />壁にぶつかった時こそ成長の好機だ」</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="pixel-divider"></div>
-
-      {/* ENDING */}
-      <div id="ending">
-        <div className="ending-overlay"></div>
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <h2 className="ending-title fade-in">To Be Continued...<br /><span style={{ fontSize: '.7em', color: '#ddd' }}>冒険は終わらない。</span></h2>
-          <p className="ending-text fade-in">
-            全6回の勉強会『ダツイチ！』は幕を閉じた。<br />
-            しかし、AIの進化が止まらない限り、我々の旅も終わることはない。<br />
-            勇者候補たちはそれぞれのフィールドへ散り、<br />今日も新たな呪文を詠唱し続けている。
-          </p>
-          <div className="btn-group fade-in">
-            <a href="#" className="pixel-btn btn-next">▶ 次のクエストを見る</a>
-            <div style={{ position: 'relative', display: 'inline-block' }}>
-              <button onClick={(e) => { e.preventDefault(); setShowShare(!showShare); }} className="pixel-btn btn-share">
-                📢 冒険の記録をシェアする
-              </button>
-              {showShare && (
-                <div style={{ position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: '10px', background: '#fff', border: '4px solid var(--black)', padding: '10px', display: 'flex', gap: '10px', boxShadow: '4px 4px 0 var(--black)', zIndex: 10 }}>
-                  <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="pixel-btn" style={{ padding: '8px 12px', background: '#1877F2', color: '#fff', fontSize: '0.8rem', boxShadow: '3px 3px 0 var(--black)' }}>FB</a>
-                  <a href="https://x.com/" target="_blank" rel="noopener noreferrer" className="pixel-btn" style={{ padding: '8px 12px', background: '#000', color: '#fff', fontSize: '0.8rem', boxShadow: '3px 3px 0 var(--black)' }}>X</a>
-                  <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="pixel-btn" style={{ padding: '8px 12px', background: '#E1306C', color: '#fff', fontSize: '0.8rem', boxShadow: '3px 3px 0 var(--black)' }}>IG</a>
-                  <a href="https://line.me/" target="_blank" rel="noopener noreferrer" className="pixel-btn" style={{ padding: '8px 12px', background: '#06C755', color: '#fff', fontSize: '0.8rem', boxShadow: '3px 3px 0 var(--black)' }}>LINE</a>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer>
-        © AI勉強会『ダツイチ！』
-      </footer>
-    </>
-  );
-}
+    // Share Button Toggle
+    const shareBtn = document.getElementById('share-btn');
+    const shareMenu = document.getElementById('share-menu');
+    if (shareBtn && shareMenu) {
+      shareBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (shareMenu.style.display === 'none') {
+          shareMenu.style.display = 'flex';
+        } else {
+          shareMenu.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
