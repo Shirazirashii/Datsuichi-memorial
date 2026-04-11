@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI勉強会『ダツイチ！』〜村人から始まる、AI解放クエスト〜</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --parchment:#F4EEDD;
+  --parchment-dark:#E8D9B8;
+  --blue-deep:#1a2a6c;
+  --blue-mid:#2d4a9e;
+  --blue-light:#4a6fd4;
+  --gold:#FFD700;
+  --gold-dark:#C8A200;
+  --black:#111;
+  --red:#c0392b;
+  --green:#27ae60;
+  --pixel-border:4px solid #111;
+}
+body{
+  background-color:var(--parchment);
+  font-family:'Noto Sans JP',sans-serif;
+  color:var(--black);
+  overflow-x:hidden;
+  image-rendering:pixelated;
+}
+
+/* ===== PIXEL UTILS ===== */
+.pixel-box{
+  border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);
+}
+.pixel-box-gold{
+  border:4px solid var(--gold-dark);
+  box-shadow:6px 6px 0 var(--gold-dark);
+  background:linear-gradient(135deg,#fffbe6,#fff3b0);
+}
+.pixel-btn{
+  display:inline-block;
+  padding:14px 28px;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:1rem;
+  cursor:pointer;
+  border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);
+  transition:transform .1s,box-shadow .1s;
+  text-decoration:none;
+  letter-spacing:.05em;
+}
+.pixel-btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--black)}
+.pixel-btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
+.btn-start{background:var(--gold);color:var(--black);animation:blink-btn 1.2s step-end infinite}
+.btn-next{background:var(--blue-deep);color:var(--gold)}
+.btn-share{background:var(--green);color:#fff}
+
+@keyframes blink-btn{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ===== SCROLL FADE ===== */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+/* ===== SECTION COMMON ===== */
+section{padding:60px 20px;max-width:900px;margin:0 auto}
+.section-title{
+  font-size:1.6rem;
+  font-weight:900;
+  color:var(--blue-deep);
+  border-left:8px solid var(--gold-dark);
+  padding-left:14px;
+  margin-bottom:28px;
+  line-height:1.4;
+}
+.section-text{
+  font-size:1rem;
+  line-height:1.9;
+  color:#333;
+}
+
+/* ===== HERO ===== */
+#hero{
+  position:relative;
+  min-height:100vh;
+  background:var(--blue-deep);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  overflow:hidden;
+  max-width:100%;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0px,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px);
+}
+.hero-stars{position:absolute;inset:0;overflow:hidden}
+.star{
+  position:absolute;
+  width:3px;height:3px;
+  background:#fff;
+  animation:twinkle 2s step-end infinite;
+}
+@keyframes twinkle{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-image-wrap{
+  width:100%;
+  max-width:520px;
+  margin-bottom:24px;
+  border:6px solid var(--gold-dark);
+  box-shadow:10px 10px 0 var(--gold-dark);
+  border-radius:0;
+  overflow:hidden;
+  background:#222;
+}
+.hero-image-wrap img{
+  width:100%;
+  display:block;
+  image-rendering:pixelated;
+}
+
+.hero-logo{
+  font-size:clamp(1.6rem,5vw,2.8rem);
+  font-weight:900;
+  color:var(--gold);
+  text-shadow:3px 3px 0 var(--gold-dark),6px 6px 0 rgba(0,0,0,.5);
+  text-align:center;
+  margin-bottom:10px;
+  line-height:1.3;
+}
+.hero-sub{
+  color:#cce0ff;
+  font-size:clamp(.85rem,2.5vw,1.05rem);
+  text-align:center;
+  margin-bottom:24px;
+  line-height:1.8;
+  max-width:560px;
+}
+.hero-tag{
+  display:inline-block;
+  background:rgba(255,215,0,.15);
+  border:2px solid var(--gold);
+  color:var(--gold);
+  font-size:.8rem;
+  font-weight:700;
+  padding:3px 10px;
+  margin-bottom:10px;
+  letter-spacing:.08em;
+}
+
+/* ===== WINDOW FRAME ===== */
+.rpg-window{
+  background:var(--blue-deep);
+  border:4px solid var(--gold-dark);
+  box-shadow:6px 6px 0 var(--gold-dark);
+  padding:24px;
+  margin-bottom:32px;
+  position:relative;
+}
+.rpg-window::before{
+  content:'';
+  position:absolute;top:4px;left:4px;right:4px;bottom:4px;
+  border:2px solid rgba(255,215,0,.3);
+  pointer-events:none;
+}
+.rpg-window-title{
+  color:var(--gold);
+  font-weight:900;
+  font-size:1.1rem;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.rpg-window p{color:#cce0ff;line-height:1.9;font-size:.95rem}
+
+/* ===== INTRO ===== */
+#intro{background:var(--parchment)}
+.img-placeholder{
+  background:#ddd;
+  border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#777;
+  font-size:.85rem;
+  font-weight:700;
+  text-align:center;
+  padding:20px;
+  margin-bottom:28px;
+}
+
+/* ===== ADVENTURE MAP ===== */
+#adventure{
+  background:linear-gradient(180deg,var(--parchment) 0%,var(--parchment-dark) 100%);
+  max-width:100%;
+  padding:60px 20px;
+}
+#adventure > div{max-width:900px;margin:0 auto}
+
+.map-path{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  position:relative;
+}
+.map-path::before{
+  content:'';
+  position:absolute;
+  left:42px;
+  top:60px;
+  bottom:60px;
+  width:4px;
+  background:repeating-linear-gradient(180deg,var(--gold-dark) 0px,var(--gold-dark) 8px,transparent 8px,transparent 16px);
+}
+
+.chapter-card{
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+  margin-bottom:40px;
+  position:relative;
+}
+.chapter-icon{
+  flex-shrink:0;
+  width:86px;height:86px;
+  background:var(--blue-deep);
+  border:4px solid var(--gold-dark);
+  box-shadow:5px 5px 0 var(--gold-dark);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  font-size:2.4rem;
+  position:relative;
+  z-index:1;
+}
+.chapter-icon .class-label{
+  font-size:.55rem;
+  color:var(--gold);
+  font-weight:700;
+  letter-spacing:.04em;
+  margin-top:4px;
+}
+.chapter-body{
+  flex:1;
+  background:#fff;
+  border:4px solid var(--black);
+  box-shadow:6px 6px 0 var(--black);
+  padding:20px;
+}
+.chapter-phase{
+  display:inline-block;
+  background:var(--blue-deep);
+  color:var(--gold);
+  font-size:.7rem;
+  font-weight:900;
+  padding:3px 10px;
+  margin-bottom:8px;
+  letter-spacing:.06em;
+}
+.chapter-title{
+  font-size:1.15rem;
+  font-weight:900;
+  color:var(--blue-deep);
+  margin-bottom:10px;
+  line-height:1.4;
+}
+.chapter-text{font-size:.9rem;line-height:1.85;color:#444}
+.exp-bar-wrap{margin-top:14px}
+.exp-label{font-size:.7rem;font-weight:700;color:#888;margin-bottom:4px}
+.exp-bar{
+  height:14px;
+  background:#ddd;
+  border:2px solid var(--black);
+  position:relative;
+  overflow:hidden;
+}
+.exp-fill{
+  height:100%;
+  background:repeating-linear-gradient(90deg,var(--gold) 0px,var(--gold) 10px,var(--gold-dark) 10px,var(--gold-dark) 20px);
+  transition:width 1.5s ease;
+}
+
+/* ===== PARTY ===== */
+#party{
+  background:var(--blue-deep);
+  max-width:100%;
+  padding:60px 20px;
+}
+#party>div{max-width:900px;margin:0 auto}
+#party .section-title{color:var(--gold)}
+
+.party-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:16px;
+}
+.party-card{
+  background:#fff;
+  border:4px solid var(--gold-dark);
+  box-shadow:6px 6px 0 var(--gold-dark);
+  padding:20px 16px;
+  text-align:center;
+}
+.party-avatar{
+  width:64px;height:64px;
+  background:#ddd;
+  border:3px solid var(--black);
+  margin:0 auto 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+}
+.party-name{font-weight:900;font-size:1rem;color:var(--blue-deep);margin-bottom:6px}
+.party-role{
+  display:inline-block;
+  background:var(--blue-deep);
+  color:var(--gold);
+  font-size:.65rem;
+  font-weight:700;
+  padding:2px 8px;
+  margin-bottom:10px;
+}
+.party-skill{
+  background:var(--parchment);
+  border:2px solid var(--black);
+  font-size:.75rem;
+  padding:4px 8px;
+  margin-bottom:8px;
+  font-weight:700;
+}
+.party-quote{font-size:.8rem;color:#555;line-height:1.6;font-style:italic}
+
+/* ===== ENDING ===== */
+#ending{
+  text-align:center;
+  background:linear-gradient(180deg,var(--parchment-dark),var(--parchment));
+  max-width:100%;
+  padding:80px 20px;
+}
+#ending>div{max-width:700px;margin:0 auto}
+.ending-title{
+  font-size:clamp(1.6rem,4vw,2.4rem);
+  font-weight:900;
+  color:var(--blue-deep);
+  margin-bottom:20px;
+  text-shadow:3px 3px 0 rgba(0,0,0,.1);
+}
+.ending-text{font-size:1rem;line-height:2;color:#444;margin-bottom:36px}
+.btn-group{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--blue-deep);
+  color:var(--gold);
+  text-align:center;
+  padding:24px 20px;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.1em;
+}
+
+/* ===== PIXEL DIVIDER ===== */
+.pixel-divider{
+  height:12px;
+  background:repeating-linear-gradient(90deg,var(--gold-dark) 0,var(--gold-dark) 12px,var(--black) 12px,var(--black) 24px);
+  margin:0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .map-path::before{left:30px}
+  .chapter-icon{width:64px;height:64px;font-size:1.8rem}
+  .chapter-card{gap:12px}
+  .pixel-btn{padding:12px 18px;font-size:.9rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stars" id="stars"></div>
+
+  <div class="hero-image-wrap fade-in">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg"
+         alt="AI勉強会ダツイチ！バナー"
+         onerror="this.style.display='none';this.parentNode.innerHTML='<div style=\'padding:60px 20px;text-align:center;color:#aaa;font-size:.85rem;font-weight:700\'>[ヒーロービジュアル：アップロード画像がここに入ります]</div>'"
+         style="display:none">
+    <!-- ここにアップロード画像を使用 -->
+    <div id="hero-img-placeholder" style="padding:0;background:#111;min-height:220px;display:flex;align-items:center;justify-content:center">
+      <div style="text-align:center;color:#aaa;">
+        <div style="font-size:3rem;margin-bottom:8px">⚔️🟢</div>
+        <div style="font-size:.75rem;font-weight:700;color:#FFD700">[ アップロードされたバナー画像 ]<br>AI勉強会 ダツイチ！</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-tag fade-in">▶ QUEST LOG OPENING...</div>
+  <h1 class="hero-logo fade-in">AI勉強会『ダツイチ！』<br><span style="font-size:.65em;color:#cce0ff">〜村人から始まる、AI解放クエスト〜</span></h1>
+  <p class="hero-sub fade-in">
+    ビジネスの最前線を知る者たちが、あえて「村人」からリスタートする。<br>
+    「一般的なAI利用」という平和な村を抜け出し、<br>真の力を引き出すための全6回の冒険の記録。
+  </p>
+  <a href="#intro" class="pixel-btn btn-start fade-in">▶ 冒険の書を開く（START）</a>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- ===== INTRO ===== -->
+<section id="intro">
+  <div class="fade-in img-placeholder" style="height:180px">
+    [🍺 古びた酒場でギルドマスターが地図を広げているドット絵]
+  </div>
+  <div class="fade-in">
+    <h2 class="section-title">なぜ我々は、安全な「村」を出たのか？</h2>
+    <div class="rpg-window">
+      <div class="rpg-window-title">📜 プロローグ</div>
+      <p>
+        ChatGPTをはじめとするAIツール。多くの人が「便利なおしゃべりツール」として日常使いする中、我々は気づいていた。<br><br>
+        「AIの本当の力は、こんなものではないはずだ」と。<br><br>
+        この『ダツイチ！（脱・一般利用）』は、ただの操作説明会ではない。自らの手で呪文（プロンプト）を紡ぎ、AIという強力な相棒と共に未知の領域を切り拓くための、過酷で熱い鍛錬の記録である。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- ===== ADVENTURE ===== -->
+<div id="adventure">
+  <div>
+    <h2 class="section-title fade-in" style="margin-bottom:40px">⚔️ 冒険の記録 — Day 1〜Day 6</h2>
+
+    <div class="map-path">
+
+      <!-- Chapter 1 -->
+      <div class="chapter-card fade-in">
+        <div class="chapter-icon">
+          🪵
+          <span class="class-label">村人→見習い</span>
+        </div>
+        <div class="chapter-body">
+          <span class="chapter-phase">📅 Day 1〜2 ／ 序盤</span>
+          <h3 class="chapter-title">第1章：未知なる地図を手に入れる</h3>
+          <div class="img-placeholder" style="height:80px;margin-bottom:12px;font-size:.75rem">
+            [🌿 ひのきの棒を手に入れた村人のドット絵アイコン]
+          </div>
+          <p class="chapter-text">
+            まずは己の現在地を知ることから始まった。AIの基礎という名の「地図」を広げ、何ができて何ができないのかを学ぶ。まだ見ぬ魔法の力に胸を躍らせながら、見習いとしての第一歩を踏み出した。
+          </p>
+          <div class="exp-bar-wrap">
+            <div class="exp-label">EXP ████░░░░░░ 33%</div>
+            <div class="exp-bar"><div class="exp-fill" style="width:33%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 2 -->
+      <div class="chapter-card fade-in">
+        <div class="chapter-icon">
+          🗡️
+          <span class="class-label">探索者→冒険者</span>
+        </div>
+        <div class="chapter-body">
+          <span class="chapter-phase">📅 Day 3〜4 ／ 中盤</span>
+          <h3 class="chapter-title">第2章：呪文の詠唱と、立ちはだかる壁</h3>
+          <div class="img-placeholder" style="height:80px;margin-bottom:12px;font-size:.75rem">
+            [🟢 暗いダンジョンでスライムに苦戦しつつ剣を振るう姿のドット絵アイコン]
+          </div>
+          <p class="chapter-text">
+            実践のダンジョンへ突入。自らの言葉（プロンプト）でAIを操ろうとするが、思い通りの結果が返ってこない「中ボス」に何度も跳ね返される。しかし、試行錯誤と仲間との情報共有により、確実に「冒険者」としての経験値（EXP）を積んでいった。
+          </p>
+          <div class="exp-bar-wrap">
+            <div class="exp-label">EXP ███████░░░ 66%</div>
+            <div class="exp-bar"><div class="exp-fill" style="width:66%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter 3 -->
+      <div class="chapter-card fade-in">
+        <div class="chapter-icon">
+          ✨
+          <span class="class-label">勇者候補！</span>
+        </div>
+        <div class="chapter-body">
+          <span class="chapter-phase">📅 Day 5〜6 ／ 終盤・クライマックス</span>
+          <h3 class="chapter-title">第3章：最終試練、そして「勇者候補」へ</h3>
+          <div class="img-placeholder" style="height:80px;margin-bottom:12px;font-size:.75rem">
+            [⚔️ 神殿の最深部で伝説の剣を掲げる姿のドット絵アイコン]
+          </div>
+          <p class="chapter-text">
+            これまでの鍛錬の集大成。それぞれのビジネスや日常において、AIをどう駆使していくのか。自らの口で高らかに宣言する最終試練。ここに集った「村人」たちは、ついに自立した「勇者候補」へとクラスチェンジを果たした。
+          </p>
+          <div class="exp-bar-wrap">
+            <div class="exp-label">EXP ██████████ 100% ★LEVEL UP!</div>
+            <div class="exp-bar"><div class="exp-fill" style="width:100%;background:repeating-linear-gradient(90deg,#FFD700 0,#FFD700 10px,#ff9900 10px,#ff9900 20px)"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- ===== PARTY ===== -->
+<div id="party">
+  <div>
+    <h2 class="section-title fade-in">🛡️ クエストを共にした、誇り高きパーティ</h2>
+    <div class="party-grid">
+
+      <div class="party-card fade-in">
+        <div class="party-avatar">🧙</div>
+        <div class="party-name">ギルドマスター（〇〇）</div>
+        <span class="party-role">GUILD MASTER</span>
+        <p class="party-quote">「よくぞここまで辿り着いた。<br>お前たちの本当の冒険はこれからだ」</p>
+      </div>
+
+      <div class="party-card fade-in">
+        <div class="party-avatar">⚔️</div>
+        <div class="party-name">勇者候補（Aさん）</div>
+        <span class="party-role">HERO CANDIDATE</span>
+        <div class="party-skill">✨ 取得スキル：『○○』</div>
+        <p class="party-quote">「AIは最強の右腕になった！」</p>
+      </div>
+
+      <div class="party-card fade-in">
+        <div class="party-avatar">🔮</div>
+        <div class="party-name">勇者候補（Bさん）</div>
+        <span class="party-role">HERO CANDIDATE</span>
+        <div class="party-skill">✨ 取得スキル：『○○』</div>
+        <p class="party-quote">「プロンプト詠唱の奥深さを知った」</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- ===== ENDING ===== -->
+<div id="ending">
+  <div>
+    <div class="fade-in img-placeholder" style="height:160px;max-width:520px;margin:0 auto 36px">
+      [🌅 夕日に向かって歩いていくパーティの後ろ姿のドット絵]
+    </div>
+    <h2 class="ending-title fade-in">To Be Continued...<br><span style="font-size:.7em;color:#666">冒険は終わらない。</span></h2>
+    <p class="ending-text fade-in">
+      全6回の勉強会『ダツイチ！』は幕を閉じた。<br>
+      しかし、AIの進化が止まらない限り、我々の旅も終わることはない。<br>
+      勇者候補たちはそれぞれのフィールドへ散り、<br>今日も新たな呪文を詠唱し続けている。
+    </p>
+    <div class="btn-group fade-in">
+      <a href="#" class="pixel-btn btn-next">▶ 次のクエストを見る</a>
+      <a href="#" class="pixel-btn btn-share">📢 冒険の記録をシェアする</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © AI勉強会『ダツイチ！』 ／ Powered by 相棒Claude &amp; 勇者候補たちの熱意
+</footer>
+
+<script>
+// Stars
+const sc=document.getElementById('stars');
+for(let i=0;i<60;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  s.style.animationDelay=Math.random()*2+'s';
+  sc.appendChild(s);
+}
+
+// Scroll fade
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+  });
+},{threshold:.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+// Smooth scroll
+document.querySelector('.btn-start').addEventListener('click',e=>{
+  e.preventDefault();
+  document.querySelector('#intro').scrollIntoView({behavior:'smooth'});
+});
+
+// EXP bars animate on scroll
+const expObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const fill=e.target.querySelector('.exp-fill');
+      if(fill){const w=fill.style.width;fill.style.width='0';setTimeout(()=>fill.style.width=w,100)}
+      expObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.chapter-card').forEach(el=>expObs.observe(el));
+</script>
+</body>
+</html>
