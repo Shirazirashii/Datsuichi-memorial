@@ -41,7 +41,7 @@
     .pixel-btn:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--black)}
     .pixel-btn:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--black)}
     .btn-start{background:var(--gold);color:var(--black);animation:blink-btn 1.2s step-end infinite}
-    .btn-next{background:var(--blue-deep);color:var(--gold)}
+    .btn-next{background:var(--blue-deep);color:#fff}
     .btn-share{background:var(--green);color:#fff}
     @keyframes blink-btn{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -233,7 +233,7 @@
     #ending>div{position:relative;z-index:1;max-width:700px;margin:0 auto}
     .ending-title{
       font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;color:var(--black);
-      margin-bottom:20px;text-shadow:3px 3px 0 #000;
+      margin-bottom:20px;text-shadow:none;
     }
     .ending-text{font-size:1rem;line-height:2;color:#fff;margin-bottom:36px;text-shadow:2px 2px 0 #000;font-weight:700;}
     .btn-group{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
@@ -485,41 +485,41 @@
   <!-- PARTY -->
   <div id="party">
     <div>
-      <h2 class="section-title fade-in">🛡️ クエストを共にした、誇り高きパーティ</h2>
+      <h2 class="section-title fade-in">🛡️ クエストを導いた、誇り高きギルドマスターたち</h2>
       <div class="party-grid">
         <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-            <img src="images/gm-seiryu.jpeg" alt="青龍" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+            <img src="images/gm-seiryu.jpeg" alt="魔導士" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           </div>
           <div class="flex-1 text-left">
-            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（青龍）</div>
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ホリーザ（魔導士）</div>
             <p class="party-quote" style="text-align: left;">「よくぞここまで辿り着いた。<br />お前たちの本当の冒険はこれからだ」</p>
           </div>
         </div>
         <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-            <img src="images/gm-byakko.jpeg" alt="白虎" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+            <img src="images/gm-byakko.jpeg" alt="戦士" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           </div>
           <div class="flex-1 text-left">
-            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（白虎）</div>
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">カーリー（戦士）</div>
             <p class="party-quote" style="text-align: left;">「風の導きがあらんことを。<br />新たな呪文を紡ぐのだ」</p>
           </div>
         </div>
         <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-            <img src="images/gm-suzaku.jpeg" alt="朱雀" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+            <img src="images/gm-suzaku.jpeg" alt="吟遊詩人" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           </div>
           <div class="flex-1 text-left">
-            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（朱雀）</div>
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ふじもっちゃん（吟遊詩人）</div>
             <p class="party-quote" style="text-align: left;">「情熱の炎を絶やすな。<br />AIは君の熱意に応えるだろう」</p>
           </div>
         </div>
         <div class="party-card fade-in flex flex-col sm:flex-row items-center sm:items-start gap-4">
           <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 border-2 border-black bg-gray-100 overflow-hidden">
-            <img src="images/gm-genbu.jpeg" alt="玄武" class="w-full h-full object-cover" onerror="this.style.display='none'" />
+            <img src="images/gm-genbu.jpeg" alt="僧侶" class="w-full h-full object-cover" onerror="this.style.display='none'" />
           </div>
           <div class="flex-1 text-left">
-            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ギルドマスター（玄武）</div>
+            <div class="party-name" style="margin: 0 0 8px 0; text-align: left;">ヨコさん（僧侶）</div>
             <p class="party-quote" style="text-align: left;">「強固な意志を持て。<br />壁にぶつかった時こそ成長の好機だ」</p>
           </div>
         </div>
