@@ -62,7 +62,7 @@
     }
     .pixel-divider{
       height:12px;
-      background:repeating-linear-gradient(90deg,var(--gold-dark) 0,var(--gold-dark) 12px,var(--black) 12px,var(--black) 24px);
+      background:var(--gold-dark);
     }
 
     /* HERO */
@@ -263,7 +263,7 @@
     </h1>
     <div class="hero-image-wrap fade-in">
       <div style="padding: 60px 20px; background: #111; min-height: 220px; display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
-        <img src="images/hero.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" />
+        <img src="images/hero.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" onerror="this.style.display='none'" />
       </div>
     </div>
     <p class="hero-sub fade-in">
@@ -321,7 +321,7 @@
               <span class="day-phase-label">序盤 ／ 村人</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv0.jpeg" alt="Day1" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv0.jpeg" alt="Day1" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class">クラス：村人</div>
                 <h3 class="day-title">旅立ち — AIという地図を手にした日</h3>
@@ -346,7 +346,7 @@
               <span class="day-phase-label">序盤 ／ 見習い</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv1.jpeg" alt="Day2" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv1.jpeg" alt="Day2" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class">クラス：見習い</div>
                 <h3 class="day-title">最初の武器 — ひのきの棒（基礎スキル）を得る</h3>
@@ -378,7 +378,7 @@
               <span class="day-phase-label">中盤 ／ 探索者</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv2.jpeg" alt="Day3" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv2.jpeg" alt="Day3" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class">クラス：探索者</div>
                 <h3 class="day-title">ダンジョン突入 — 呪文（プロンプト）の詠唱開始</h3>
@@ -403,7 +403,7 @@
               <span class="day-phase-label">中盤 ／ 冒険者</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv3.jpeg" alt="Day4" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv3.jpeg" alt="Day4" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class">クラス：冒険者</div>
                 <h3 class="day-title">中ボス撃破 — 仲間との情報共有で壁を越える</h3>
@@ -435,7 +435,7 @@
               <span class="day-phase-label">終盤 ／ 冒険者（上級）</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv3-4.jpeg" alt="Day5" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv3-4.jpeg" alt="Day5" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class">クラス：冒険者（上級）</div>
                 <h3 class="day-title">最終試練へ — それぞれのビジネスにAIを宿す</h3>
@@ -460,7 +460,7 @@
               <span class="day-phase-label" style="color: var(--gold-dark); font-weight: 900;">★ FINAL ／ 勇者候補</span>
             </div>
             <div class="flex flex-col md:flex-row gap-5 items-start">
-              <img src="images/Lv4.jpeg" alt="Day6" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" />
+              <img src="images/Lv4.jpeg" alt="Day6" class="w-full md:w-1/2 shrink-0" style="height: auto; border: 3px solid var(--black);" onerror="this.style.display='none'" />
               <div class="flex-1">
                 <div class="day-class" style="border-color: var(--gold-dark); color: var(--gold-dark);">クラス：勇者候補 ★LEVEL UP!</div>
                 <h3 class="day-title">宣誓 — 勇者候補への、クラスチェンジ！</h3>
@@ -537,15 +537,15 @@
       <p class="ending-text fade-in">
         全6回の勉強会『ダツイチ！』は幕を閉じた。<br />
         しかし、AIの進化が止まらない限り、我々の旅も終わることはない。<br />
-        冒険者たちはそれぞれの道に分かれ、<br />今日も己を磨き続けている。
+        冒険者たちはそれぞれの道に分かれ、<br />今日も己の技を磨き続けている。
       </p>
       <div class="btn-group fade-in">
-        <a href="#" class="pixel-btn btn-next">▶ 次のクエストを見る</a>
+        <a href="https://shirazirashii.github.io/datsuichi_next/" target="_blank" rel="noopener noreferrer" class="pixel-btn btn-next">▶ 次のクエストを見る</a>
         <div style="position: relative; display: inline-block;">
           <button id="share-btn" class="pixel-btn btn-share">
             ▶ 冒険の記録をシェアする
           </button>
-          <div id="share-menu" style="display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 10px; background: #fff; border: 4px solid var(--black); padding: 10px; gap: 10px; box-shadow: 4px 4px 0 var(--black); z-index: 10;">
+          <div id="share-menu" style="display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 10px; background: #fff; border: 4px solid var(--black); padding: 10px; gap: 10px; box-shadow: 4px 4px 0 var(--black); z-index: 10;">
             <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #1877F2; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">FB</a>
             <a href="https://x.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #000; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">X</a>
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="pixel-btn" style="padding: 8px 12px; background: #E1306C; color: #fff; font-size: 0.8rem; box-shadow: 3px 3px 0 var(--black);">IG</a>
