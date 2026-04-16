@@ -78,8 +78,9 @@
       position:absolute;inset:0;
       background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px),
       repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0,rgba(255,255,255,.03) 2px,transparent 2px,transparent 16px);
+      pointer-events:none;
     }
-    .hero-stars{position:absolute;inset:0;overflow:hidden}
+    .hero-stars{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
     .star{position:absolute;width:8px;height:8px;background:#fff;clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);animation:twinkle 2s step-end infinite}
     @keyframes twinkle{0%,100%{opacity:1}50%{opacity:0}}
     .hero-image-wrap{
@@ -274,7 +275,7 @@
       「一般利用」という平和な村を抜け出した。<br />
       <br />これは、AIの真の力を引き出すために学んだ全6回の冒険の記録。
     </p>
-    <div class="hero-nav fade-in" style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px;">
+    <div class="hero-nav fade-in" style="position: relative; z-index: 10; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px;">
       <a href="#intro" class="pixel-btn" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">プロローグ</a>
       <a href="#adventure" class="pixel-btn" onclick="document.querySelector('#adventure').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">冒険の記録</a>
       <a href="#party" class="pixel-btn" onclick="document.querySelector('#party').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">ギルドマスター</a>
