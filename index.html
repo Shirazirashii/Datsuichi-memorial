@@ -84,7 +84,8 @@
     .star{position:absolute;width:8px;height:8px;background:#fff;clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);animation:twinkle 2s step-end infinite}
     @keyframes twinkle{0%,100%{opacity:1}50%{opacity:0}}
     .hero-image-wrap{
-      width:100vw;max-width:100vw;margin-bottom:24px;
+      width:calc(100vw - 40px);max-width:900px;margin:0 auto 24px auto;
+      border-radius:8px;
       overflow:hidden;background:var(--blue-deep);
       -webkit-mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
       mask-image: radial-gradient(ellipse at center, black 60%, transparent 100%);
@@ -136,8 +137,11 @@
       display:flex;gap:20px;align-items:flex-start;
       margin-bottom:28px;position:relative;
     }
+    .day-date{
+      font-size:1.3rem;color:#fff;font-weight:900;letter-spacing:0.05em;
+    }
     .day-icon{
-      flex-shrink:0;width:86px;height:86px;
+      flex-shrink:0;width:86px;height:64px;
       background:var(--blue-deep);border:4px solid var(--gold-dark);
       box-shadow:5px 5px 0 var(--gold-dark);
       display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -147,6 +151,10 @@
     .day-body{
       flex:1;background:#fff;border:4px solid var(--black);
       box-shadow:6px 6px 0 var(--black);padding:18px 20px;
+      transition:transform 0.3s ease;
+    }
+    .day-body:hover{
+      transform:translateY(-8px);
     }
     .day-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
     .day-badge{
@@ -298,7 +306,7 @@
         </p>
       </div>
     </div>
-    <div class="fade-in" style="background: transparent; padding: 16px; margin-bottom: 40px;">
+    <div class="fade-in" style="background: transparent; padding: 16px; margin-bottom: 40px; margin-left: -20px; margin-right: -20px;">
       <img src="images/Map.jpeg" alt="世界地図" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'" />
     </div>
   </section>
@@ -321,7 +329,7 @@
 
         <!-- Day 1 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day1.jpeg" alt="Day 1" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">1/22</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 1</span>
@@ -346,7 +354,7 @@
 
         <!-- Day 2 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day2.jpeg" alt="Day 2" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">2/10</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 2</span>
@@ -378,7 +386,7 @@
 
         <!-- Day 3 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day3.jpeg" alt="Day 3" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">3/7</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 3</span>
@@ -403,7 +411,7 @@
 
         <!-- Day 4 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day4.jpeg" alt="Day 4" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">3/28</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 4</span>
@@ -435,7 +443,7 @@
 
         <!-- Day 5 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day5.jpeg" alt="Day 5" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">4/18</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 5</span>
@@ -460,7 +468,7 @@
 
         <!-- Day 6 -->
         <div class="day-card fade-in">
-          <div class="day-icon"><img src="images/icon-day6.jpeg" alt="Day 6" class="w-full h-full object-cover" onerror="this.style.display='none'" /></div>
+          <div class="day-icon"><span class="day-date">5/9</span></div>
           <div class="day-body">
             <div class="day-header">
               <span class="day-badge">DAY 6</span>
