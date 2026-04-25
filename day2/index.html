@@ -1,1 +1,200 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
+import {
+  ScrollText,
+  ArrowUpCircle,
+  Terminal,
+  UserPlus,
+  ArrowRight,
+  ArrowDown,
+  AlertTriangle,
+  Swords,
+  Sparkles,
+  Check,
+  AlertCircle,
+  Library,
+  ShieldCheck,
+  Compass
+} from 'lucide-react';
+
+export default function App() {
+  return (
+    <div className="bg-slate-900 p-4 md:p-8 flex justify-center min-h-screen text-slate-800">
+      <div className="parchment w-full max-w-4xl rounded-sm shadow-2xl overflow-hidden border-4 border-emerald-700 relative">
+        {/* Header */}
+        <header className="bg-emerald-800 text-emerald-50 p-6 text-center border-b-4 border-emerald-900">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3">
+            <ScrollText className="w-8 h-8" />
+            ダツイチ！Day2 クエスト報告書
+            <ScrollText className="w-8 h-8" />
+          </h1>
+          <p className="text-emerald-200 text-lg">〜 呪文詠唱（プロンプト）の基礎、魔導書（NotebookLM）の解読 〜</p>
+          <p className="text-sm mt-2 opacity-80">開催日: 2026年2月10日</p>
+        </header>
+
+        <div className="p-6 md:p-10 space-y-10">
+
+      
+          {/* Intro Message Section */}
+          <section className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+            {/* Left Card: 1/5 width, square, no border, no shadow */}
+            <div className="w-24 md:w-1/5 aspect-square bg-emerald-100/50 flex flex-col items-center justify-center text-emerald-800 shrink-0 overflow-hidden p-1">
+              <img src="/images/erina-ai2.jpg" alt="エリナーAI_Day2" className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full mb-1" />
+              <span className="text-xs font-bold opacity-80 text-center px-1 leading-tight">案内人<br className="hidden md:block" />ナビィ</span>
+            </div>
+            
+            {/* Right Card: 4/5 width, rounded, speech bubble, no shadow */}
+            <div className="w-full md:w-4/5 bg-white rounded-3xl p-6 md:p-8 text-slate-800 font-medium leading-relaxed relative">
+              <div className="hidden md:block absolute top-[40px] -left-[16px] w-0 h-0 border-y-[16px] border-y-transparent border-r-[16px] border-r-white"></div>
+              <div className="md:hidden absolute -top-[16px] left-[40px] w-0 h-0 border-x-[16px] border-x-transparent border-b-[16px] border-b-white"></div>
+              <p>
+                冒険者の皆様、ようこそ！記念すべき最初の旅立ち！<br />
+                あの日の熱気が伝わるように、私、エリナーAI（アイ）が<br />
+                ばっちり、振り返りレポートをまとめちゃいました！
+              </p>
+            </div>
+          </section>
+
+          {/* Section 1: Class Change */}
+          <section className="text-center">
+            <div className="inline-block bg-white/80 px-8 py-4 rounded-xl shadow-md border-2 border-emerald-400">
+              <h2 className="text-xl md:text-2xl font-bold flex items-center gap-3 justify-center text-emerald-800">
+                <ArrowUpCircle className="w-8 h-8 text-emerald-500" />
+                【祝】クラスチェンジ！ Lv1「見習い」へ
+              </h2>
+              <p className="mt-2 text-slate-700 font-bold">村人（一般利用）からの卒業！君はもう、魔法（AIツール）を操る側だ。</p>
+            </div>
+          </section>
+
+          {/* Section 2: Prompt Engineering */}
+          <section className="bg-white/60 p-6 rounded-lg border border-emerald-300 shadow-sm">
+            <h2 className="text-2xl font-bold text-emerald-900 border-b-2 border-emerald-300 pb-2 mb-4 flex items-center gap-2">
+              <Terminal className="w-6 h-6" /> 詠唱（プロンプト）の極意
+            </h2>
+            
+            <div className="space-y-6">
+              <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                <h3 className="font-bold text-blue-900 flex items-center gap-2 mb-2">
+                  <UserPlus className="w-5 h-5" /> 生成AI ＝「優秀だが指示待ちの新人インターン」
+                </h3>
+                <p className="text-sm text-slate-700">「あれやっといて」の丸投げ（Bad）はNG！<br />誰に向けて？何のために？どういう手順で？ <strong>5W1Hを意識した具体的な指示（Good）</strong> が必要。</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <h4 className="font-bold text-amber-800 mb-2">要素①：役割（Persona）</h4>
+                  <p className="text-sm text-slate-600 mb-2">AIが「誰として振る舞うか」を指定する。</p>
+                  <div className="bg-white p-2 rounded text-xs border border-amber-100">
+                    詠唱例：「あなたはプロのコピーライターです」「辛口の批評家として回答して」
+                  </div>
+                </div>
+                <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                  <h4 className="font-bold text-amber-800 mb-2">要素②：背景（Background）</h4>
+                  <p className="text-sm text-slate-600 mb-2">前提情報、経緯、目的、ターゲット層を伝える。</p>
+                  <div className="bg-white p-2 rounded text-xs border border-amber-100">
+                    早とちりや的外れな回答を防ぐための超重要ステップ！
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-center p-4 bg-slate-50 rounded-lg">
+                <div className="text-center">
+                  <div className="font-bold text-emerald-700">Phase 1：拡散</div>
+                  <div className="text-xs text-slate-500">アイデアを広く出す</div>
+                </div>
+                <ArrowRight className="text-slate-400 hidden md:block" />
+                <ArrowDown className="text-slate-400 md:hidden" />
+                <div className="text-center">
+                  <div className="font-bold text-emerald-700">Phase 2：収束</div>
+                  <div className="text-xs text-slate-500">批判的思考でトップ3に絞り込む</div>
+                </div>
+              </div>
+              
+              <div className="bg-red-50 p-3 rounded text-sm text-red-800 border border-red-200 flex items-start gap-2">
+                <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                <p><strong>注意：AIの「記憶」には限界がある！</strong> 会話が長くなると容量（トークン）オーバーになり、古い指示を忘れたり、注意力が低下（ノイズ増大）したりします。</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 3: Gemini vs NotebookLM */}
+          <section className="bg-emerald-50 p-6 rounded-lg border border-emerald-200">
+            <h2 className="text-2xl font-bold text-emerald-900 border-b-2 border-emerald-300 pb-2 mb-6 flex items-center gap-2">
+              <Swords className="w-6 h-6" /> 2つの強力な魔法の使い分け
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Gemini */}
+              <div className="bg-white p-5 rounded-xl shadow-sm border-t-4 border-blue-500 relative overflow-hidden">
+                <div className="absolute -right-4 -top-4 opacity-10">
+                  <Sparkles className="w-24 h-24" />
+                </div>
+                <h3 className="text-xl font-bold text-blue-700 flex items-center gap-2 mb-3">
+                  <Sparkles className="w-6 h-6" /> Gemini
+                </h3>
+                <p className="font-bold text-slate-800 mb-2">全知全能の「秘書」</p>
+                <ul className="text-sm space-y-2 text-slate-600">
+                  <li className="flex items-start gap-1"><Check className="w-4 h-4 text-blue-500 mt-0.5" /> 知識の源：インターネット上の膨大なデータ</li>
+                  <li className="flex items-start gap-1"><Check className="w-4 h-4 text-blue-500 mt-0.5" /> 得意：ゼロからの生成、ブレスト、最新情報</li>
+                  <li className="flex items-start gap-1 text-red-500"><AlertCircle className="w-4 h-4 mt-0.5" /> 弱点：幻覚（ハルシネーション）の可能性</li>
+                </ul>
+                <div className="mt-3 text-xs bg-blue-50 p-2 rounded text-blue-800 font-bold">
+                  ▶︎「外の知識」を求める時に使う！
+                </div>
+              </div>
+
+              {/* NotebookLM */}
+              <div className="bg-white p-5 rounded-xl shadow-sm border-t-4 border-teal-500 relative overflow-hidden">
+                <div className="absolute -right-4 -top-4 opacity-10">
+                  <Library className="w-24 h-24" />
+                </div>
+                <h3 className="text-xl font-bold text-teal-700 flex items-center gap-2 mb-3">
+                  <Library className="w-6 h-6" /> NotebookLM
+                </h3>
+                <p className="font-bold text-slate-800 mb-2">自分専用の「図書館」</p>
+                <ul className="text-sm space-y-2 text-slate-600">
+                  <li className="flex items-start gap-1"><Check className="w-4 h-4 text-teal-500 mt-0.5" /> 知識の源：自分が提供したソース資料のみ</li>
+                  <li className="flex items-start gap-1"><Check className="w-4 h-4 text-teal-500 mt-0.5" /> 得意：情報の整理、構造化、要約、分析</li>
+                  <li className="flex items-start gap-1 text-teal-600"><ShieldCheck className="w-4 h-4 mt-0.5" /> 強み：ソースに基づいた高い根拠（出典明示）</li>
+                </ul>
+                <div className="mt-3 text-xs bg-teal-50 p-2 rounded text-teal-800 font-bold">
+                  ▶︎「内の知識」を深める時に使う！
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Section 4: Mindset */}
+          <section className="text-center">
+            <div className="inline-block bg-emerald-900 text-emerald-50 px-8 py-5 rounded-xl shadow-lg border-2 border-emerald-500 w-full md:w-4/5">
+              <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-2 mb-3">
+                <Compass className="w-6 h-6 text-amber-400" />
+                冒険の羅針盤は、常に「君の意志」だ
+              </h2>
+              <p className="text-sm md:text-base text-emerald-100 leading-relaxed text-left md:text-center">
+                プロンプトを磨くことは、「AIへの命令」ではなく、頭の中の曖昧な思考を解像度の高い言葉にする<strong>「自分自身との対話」</strong>。<br />
+                AIに「何をさせるか（手段）」ではなく、AIと共に<strong>「何を成し遂げたいか（目的）」</strong>を定めよう。<br /><br />
+                <span className="text-amber-300 font-bold text-lg">道具に振り回されるな。常に「問い」の中心に自分を置け！</span>
+              </p>
+            </div>
+          </section>
+
+        </div>
+        
+        {/* Back Button */}
+        <div className="px-6 md:px-10 pb-8 flex justify-start">
+          <a href="../index.html" className="inline-block bg-amber-100 text-amber-900 border border-amber-300 hover:bg-amber-200 px-6 py-2 rounded-full font-bold transition-colors">
+            ◀ メインページに戻る
+          </a>
+        </div>
+        
+        <footer className="bg-emerald-900/10 p-4 text-center text-sm text-emerald-900 border-t border-emerald-200">
+          AI勉強会『ダツイチ！』© 2026
+        </footer>
+      </div>
+    </div>
+  );
+}
