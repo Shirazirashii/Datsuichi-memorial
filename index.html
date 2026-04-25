@@ -136,6 +136,10 @@
     .day-card{
       display:flex;gap:20px;align-items:flex-start;
       margin-bottom:28px;position:relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a.day-card:hover {
+      transform: translateY(-4px);
     }
     .day-date{
       font-size:1.3rem;color:#fff;font-weight:900;letter-spacing:0.05em;
@@ -335,7 +339,7 @@
         </div>
 
         <!-- Day 1 -->
-        <div class="day-card fade-in">
+        <a href="day1/index.html" class="day-card fade-in" style="text-decoration: none; color: inherit; cursor: pointer;">
           <div class="day-icon"><span class="day-date">1/22</span></div>
           <div class="day-body">
             <div class="day-header">
@@ -357,7 +361,7 @@
               <div class="exp-bar"><div class="exp-fill" data-width="17"></div></div>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Day 2 -->
         <div class="day-card fade-in">
