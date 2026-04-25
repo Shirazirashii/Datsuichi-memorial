@@ -36,17 +36,15 @@ export default function App() {
                 </header>
 
                 <div className="p-6 md:p-10 space-y-10">
-                    {/* Character Speech Bubble Intro */}
-                    <div className="flex flex-row items-center gap-4 md:gap-6">
-                        {/* Left Card (Square, 1:4 ratio) */}
-                        <div className="w-1/5 aspect-square bg-[#eaf4e5] overflow-hidden flex flex-col items-center justify-center p-1 md:p-2">
-                            <div className="text-center text-[#1e5631] font-bold text-xs md:text-sm leading-tight flex flex-col items-center justify-center h-full gap-1">
-                                <span>エリナー</span>
-                                <span>Day3</span>
-                                <span>案内人</span>
-                                <span>ナビィ</span>
-                            </div>
-                        </div>
+      
+          {/* Intro Message Section */}
+          <section className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+            {/* Left Card: 1/5 width, square, no border, no shadow */}
+            <div className="w-24 md:w-1/5 aspect-square bg-emerald-100/50 flex flex-col items-center justify-center text-emerald-800 shrink-0 overflow-hidden p-1">
+              <img src="/images/erina-ai2.jpg" alt="エリナーAI_Day2" className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full mb-1" />
+              <span className="text-xs font-bold opacity-80 text-center px-1 leading-tight">案内人<br className="hidden md:block" />ナビィ</span>
+            </div>
+
                         
                         {/* Right Card (Speech Bubble, 4:5 ratio so w-4/5) */}
                         <div className="w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
