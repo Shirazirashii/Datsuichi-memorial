@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ダツイチ！Day5 クエスト振り返り</title>
+    <title>ダツイチ！Day5 クエスト報告書</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
         
-        body { font-family: 'Noto Sans JP', sans-serif; }
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+        }
+        
         .parchment {
             background-color: #fdf6e3;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
@@ -33,10 +36,10 @@
 
         <div class="p-6 md:p-10 space-y-10">
 
-            <!-- Intro Message Section -->
-            <section class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                <!-- Left Card: 1/5 width, square, no border, no shadow -->
-                <div class="w-24 md:w-1/5 aspect-square shrink-0 overflow-hidden">
+            <!-- Intro Speech Bubble -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+                <!-- 1:4 Layout Container - Left Square -->
+                <div class="col-span-1 aspect-square bg-[#e8f5e9] overflow-hidden shadow-none border-none">
                     <img src="../images/erina-ai5.jpg" alt="エリナーAI_Day5" class="w-full h-full object-cover">
                 </div>
                 
@@ -161,13 +164,14 @@
                 メインページに戻る
             </a>
         </div>
-
+        
         <footer class="bg-indigo-900/10 p-4 text-center text-sm text-indigo-900 border-t border-indigo-200">
             AI勉強会『ダツイチ！』© 2026
         </footer>
     </div>
 
     <script>
+        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>
