@@ -1,217 +1,211 @@
-import {
-  Swords,
-  Globe,
-  Flame,
-  TrendingDown,
-  Target,
-  Map as MapIcon,
-  User,
-  BookOpen,
-  Compass,
-  Crown,
-  Wand2,
-  Sparkles,
-  Library,
-  Search,
-  LayoutDashboard
-} from "lucide-react";
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダツイチ！Day1 クエスト報告書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap');
+        body { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 p-4 md:p-8 flex justify-center min-h-screen text-slate-800">
 
-export default function App() {
-  return (
-    <div className="bg-slate-900 p-4 md:p-8 flex justify-center min-h-screen text-slate-800">
-      <div 
-        className="w-full max-w-4xl rounded-sm shadow-2xl overflow-hidden border-4 border-amber-700 relative"
-        style={{
-          backgroundColor: "#fdf6e3",
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`
-        }}
-      >
-        {/* Header */}
-        <header className="bg-amber-800 text-amber-50 p-6 text-center border-b-4 border-amber-900">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3" style={{ fontFamily: "'Noto Sans JP', serif" }}>
-            <Swords className="w-8 h-8" />
-            ダツイチ！Day1 クエスト報告書
-            <Swords className="w-8 h-8" />
-          </h1>
-          <p className="text-amber-200 text-lg">〜 旅立ち — 冒険の地図を手に、決意した日 〜</p>
-          <p className="text-sm mt-2 opacity-80">開催日: 2026年1月22日</p>
+    <div class="w-full max-w-4xl rounded-sm shadow-2xl overflow-hidden border-4 border-amber-700 relative"
+         style="background-color: #fdf6e3; background-image: url(&quot;data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E&quot;);">
+        
+        <!-- Header -->
+        <header class="bg-amber-800 text-amber-50 p-6 text-center border-b-4 border-amber-900">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3" style="font-family: 'Noto Sans JP', serif;">
+                <i data-lucide="swords" class="w-8 h-8"></i>
+                ダツイチ！Day1 クエスト報告書
+                <i data-lucide="swords" class="w-8 h-8"></i>
+            </h1>
+            <p class="text-amber-200 text-lg">〜 旅立ち — 冒険の地図を手に、決意した日 〜</p>
+            <p class="text-sm mt-2 opacity-80">開催日: 2026年1月22日</p>
         </header>
 
-        <div className="p-6 md:p-10 space-y-10">
+        <div class="p-6 md:p-10 space-y-10">
 
-          {/* Intro Message Section */}
-          <section className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-            {/* Left Card: 1/5 width, square, no border, no shadow */}
-            <div className="w-24 md:w-1/5 aspect-square bg-emerald-100/50 flex flex-col items-center justify-center text-emerald-800 shrink-0 overflow-hidden p-1">
-              <img src="/images/erina-ai1.jpg" alt="エリナーAI_Day1" className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full mb-1" />
-              <span className="text-xs font-bold opacity-80 text-center px-1 leading-tight">案内人<br className="hidden md:block" />ナビィ</span>
-            </div>
-            
-            {/* Right Card: 4/5 width, rounded, speech bubble, no shadow */}
-            <div className="w-full md:w-4/5 bg-white p-5 md:p-6 rounded-2xl relative">
-              {/* Speech bubble tail pointing left */}
-              <div className="hidden md:block absolute top-1/2 -left-4 transform -translate-y-1/2 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent"></div>
-              {/* Speech bubble tail pointing up for mobile */}
-              <div className="md:hidden absolute -top-4 left-10 w-0 h-0 border-l-[12px] border-l-transparent border-b-[16px] border-b-white border-r-[12px] border-r-transparent"></div>
-              
-              <p className="text-slate-700 leading-relaxed font-medium">
-                冒険者の皆様、ようこそ！記念すべき最初の旅立ち！<br />
-                あの日の熱気が伝わるように、私、エリナーAI（アイ）がばっちり、振り返りレポートをまとめちゃいました！
-              </p>
-            </div>
-          </section>
+            <!-- Intro Message Section -->
+            <section class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                <!-- Left Card -->
+                <div class="w-24 md:w-1/5 aspect-square bg-emerald-100/50 flex flex-col items-center justify-center text-emerald-800 shrink-0 overflow-hidden p-1">
+                    <img src="../images/erina-ai1.jpg" alt="エリナーAI_Day1" class="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full mb-1">
+                    <span class="text-xs font-bold opacity-80 text-center px-1 leading-tight">案内人<br class="hidden md:block">ナビィ</span>
+                </div>
+                
+                <!-- Right Card -->
+                <div class="w-full md:w-4/5 bg-white p-5 md:p-6 rounded-2xl relative">
+                    <!-- Speech bubble tail pointing left -->
+                    <div class="hidden md:block absolute top-1/2 -left-4 transform -translate-y-1/2 w-0 h-0 border-t-[12px] border-t-transparent border-r-[16px] border-r-white border-b-[12px] border-b-transparent"></div>
+                    <!-- Speech bubble tail pointing up for mobile -->
+                    <div class="md:hidden absolute -top-4 left-10 w-0 h-0 border-l-[12px] border-l-transparent border-b-[16px] border-b-white border-r-[12px] border-r-transparent"></div>
+                    
+                    <p class="text-slate-700 leading-relaxed font-medium">
+                        冒険者の皆様、ようこそ！記念すべき最初の旅立ち！<br>
+                        あの日の熱気が伝わるように、私、エリナーAI（アイ）がばっちり、振り返りレポートをまとめちゃいました！
+                    </p>
+                </div>
+            </section>
 
-          {/* Section 1: World Status */}
-          <section className="bg-white/60 p-6 rounded-lg border border-amber-300 shadow-sm">
-            <h2 className="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-4 flex items-center gap-2">
-              <Globe className="w-6 h-6" /> 世界の現状と危機
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-3">
-                <div className="bg-red-100 p-2 rounded-full text-red-700">
-                  <Flame className="w-6 h-6" />
+            <!-- Section 1: World Status -->
+            <section class="bg-white/60 p-6 rounded-lg border border-amber-300 shadow-sm">
+                <h2 class="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-4 flex items-center gap-2">
+                    <i data-lucide="globe" class="w-6 h-6"></i> 世界の現状と危機
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-red-100 p-2 rounded-full text-red-700">
+                            <i data-lucide="flame" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">AI博覧会の熱狂</h3>
+                            <p class="text-sm text-slate-600">世間の関心は最高潮。しかし、多くの人が「AIを使いこなせる層」と「そうでない層」の二極化に焦燥感を抱いている。</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="bg-blue-100 p-2 rounded-full text-blue-700">
+                            <i data-lucide="trending-down" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">デザイン業界の試練</h3>
+                            <p class="text-sm text-slate-600">AI活用の普及により、顧客から単価引き下げの圧力が。ただの作業者ではなく、新たな価値創造が急務に。</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-lg">AI博覧会の熱狂</h3>
-                  <p className="text-sm text-slate-600">世間の関心は最高潮。しかし、多くの人が「AIを使いこなせる層」と「そうでない層」の二極化に焦燥感を抱いている。</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="bg-blue-100 p-2 rounded-full text-blue-700">
-                  <TrendingDown className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-lg">デザイン業界の試練</h3>
-                  <p className="text-sm text-slate-600">AI活用の普及により、顧客から単価引き下げの圧力が。ただの作業者ではなく、新たな価値創造が急務に。</p>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
-          {/* Section 2: Mission */}
-          <section className="text-center">
-            <div className="inline-block bg-amber-900 text-amber-50 px-8 py-4 rounded-full shadow-lg border-2 border-amber-500">
-              <h2 className="text-xl md:text-2xl font-bold flex items-center gap-3 justify-center">
-                <Target className="w-8 h-8 text-amber-400" />
-                ギルドのミッション：『脱・一般利用（ダツイチ）』
-              </h2>
-              <p className="mt-2 text-amber-200">
-                AIを単なる「検索窓」にするステージを卒業し、<br />思考を拡張する「相棒」へ進化させる！
-              </p>
-            </div>
-          </section>
+            <!-- Section 2: Mission -->
+            <section class="text-center">
+                <div class="inline-block bg-amber-900 text-amber-50 px-8 py-4 rounded-full shadow-lg border-2 border-amber-500">
+                    <h2 class="text-xl md:text-2xl font-bold flex items-center gap-3 justify-center">
+                        <i data-lucide="target" class="w-8 h-8 text-amber-400"></i>
+                        ギルドのミッション：『脱・一般利用（ダツイチ）』
+                    </h2>
+                    <p class="mt-2 text-amber-200">
+                        AIを単なる「検索窓」にするステージを卒業し、<br>思考を拡張する「相棒」へ進化させる！
+                    </p>
+                </div>
+            </section>
 
-          {/* Section 3: Roadmap */}
-          <section className="bg-amber-50 p-6 rounded-lg border border-amber-200">
-            <h2 className="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-6 flex items-center gap-2">
-              <MapIcon className="w-6 h-6" /> 冒険者へのロードマップ
-            </h2>
-            <div className="relative">
-              {/* Path Line */}
-              <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-amber-300 transform md:-translate-x-1/2"></div>
-              
-              <div className="space-y-8 relative">
-                {/* Lv 0 */}
-                <div className="flex flex-col md:flex-row items-center md:justify-between w-full">
-                  <div className="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
-                    <h3 className="font-bold text-lg text-slate-500">Lv0: 村人 (スタート地点)</h3>
-                    <p className="text-sm">参加者の多くが位置する「アラウンド一般人」。生成AIを検索代わりやおしゃべり相手として使っている状態。</p>
-                  </div>
-                  <div className="w-10 h-10 bg-slate-400 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white">
-                    <User className="w-5 h-5" />
-                  </div>
-                  <div className="md:w-5/12 hidden md:block"></div>
-                </div>
+            <!-- Section 3: Roadmap -->
+            <section class="bg-amber-50 p-6 rounded-lg border border-amber-200">
+                <h2 class="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-6 flex items-center gap-2">
+                    <i data-lucide="map" class="w-6 h-6"></i> 冒険者へのロードマップ
+                </h2>
+                <div class="relative">
+                    <!-- Path Line -->
+                    <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-amber-300 transform md:-translate-x-1/2"></div>
+                    
+                    <div class="space-y-8 relative">
+                        <!-- Lv 0 -->
+                        <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
+                            <div class="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
+                                <h3 class="font-bold text-lg text-slate-500">Lv0: 村人 (スタート地点)</h3>
+                                <p class="text-sm">参加者の多くが位置する「アラウンド一般人」。生成AIを検索代わりやおしゃべり相手として使っている状態。</p>
+                            </div>
+                            <div class="w-10 h-10 bg-slate-400 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white">
+                                <i data-lucide="user" class="w-5 h-5"></i>
+                            </div>
+                            <div class="md:w-5/12 hidden md:block"></div>
+                        </div>
 
-                {/* Lv 1 */}
-                <div className="flex flex-col md:flex-row items-center md:justify-between w-full">
-                  <div className="md:w-5/12 hidden md:block"></div>
-                  <div className="w-10 h-10 bg-emerald-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-emerald-200">
-                    <BookOpen className="w-5 h-5" />
-                  </div>
-                  <div className="md:w-5/12 text-left pl-16 md:pl-8">
-                    <h3 className="font-bold text-lg text-emerald-700">Lv1: 見習い</h3>
-                    <p className="text-sm">魔法（ツール）の種類を知り、自分自身の言葉で基本の詠唱（プロンプト）ができるようになる。</p>
-                  </div>
-                </div>
+                        <!-- Lv 1 -->
+                        <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
+                            <div class="md:w-5/12 hidden md:block"></div>
+                            <div class="w-10 h-10 bg-emerald-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-emerald-200">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <div class="md:w-5/12 text-left pl-16 md:pl-8">
+                                <h3 class="font-bold text-lg text-emerald-700">Lv1: 見習い</h3>
+                                <p class="text-sm">魔法（ツール）の種類を知り、自分自身の言葉で基本の詠唱（プロンプト）ができるようになる。</p>
+                            </div>
+                        </div>
 
-                {/* Lv 2 */}
-                <div className="flex flex-col md:flex-row items-center md:justify-between w-full">
-                  <div className="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
-                    <h3 className="font-bold text-lg text-blue-700">Lv2: 探索者</h3>
-                    <p className="text-sm">テキスト、画像、データを組み合わせ、目的達成のために複数の魔法を連携できるようになる。</p>
-                  </div>
-                  <div className="w-10 h-10 bg-blue-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-blue-200">
-                    <Compass className="w-5 h-5" />
-                  </div>
-                  <div className="md:w-5/12 hidden md:block"></div>
-                </div>
+                        <!-- Lv 2 -->
+                        <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
+                            <div class="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
+                                <h3 class="font-bold text-lg text-blue-700">Lv2: 探索者</h3>
+                                <p class="text-sm">テキスト、画像、データを組み合わせ、目的達成のために複数の魔法を連携できるようになる。</p>
+                            </div>
+                            <div class="w-10 h-10 bg-blue-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-blue-200">
+                                <i data-lucide="compass" class="w-5 h-5"></i>
+                            </div>
+                            <div class="md:w-5/12 hidden md:block"></div>
+                        </div>
 
-                {/* Lv 3 */}
-                <div className="flex flex-col md:flex-row items-center md:justify-between w-full">
-                  <div className="md:w-5/12 hidden md:block"></div>
-                  <div className="w-12 h-12 bg-amber-600 rounded-full border-4 border-amber-200 flex items-center justify-center z-10 absolute left-2 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-lg shadow-amber-300">
-                    <Crown className="w-6 h-6" />
-                  </div>
-                  <div className="md:w-5/12 text-left pl-16 md:pl-8">
-                    <h3 className="font-bold text-xl text-amber-800">Lv3: 冒険者 (最終目標)</h3>
-                    <p className="text-sm">自分だけの武器「カスタムGem（独自エージェント）」を錬成し、日々の業務や価値創造の相棒とする！</p>
-                  </div>
+                        <!-- Lv 3 -->
+                        <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
+                            <div class="md:w-5/12 hidden md:block"></div>
+                            <div class="w-12 h-12 bg-amber-600 rounded-full border-4 border-amber-200 flex items-center justify-center z-10 absolute left-2 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-lg shadow-amber-300">
+                                <i data-lucide="crown" class="w-6 h-6"></i>
+                            </div>
+                            <div class="md:w-5/12 text-left pl-16 md:pl-8">
+                                <h3 class="font-bold text-xl text-amber-800">Lv3: 冒険者 (最終目標)</h3>
+                                <p class="text-sm">自分だけの武器「カスタムGem（独自エージェント）」を錬成し、日々の業務や価値創造の相棒とする！</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
-          {/* Section 4: Tools */}
-          <section>
-            <h2 className="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-4 flex items-center gap-2">
-              <Wand2 className="w-6 h-6" /> 世界に存在する魔法（主要AIツール）
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm flex gap-3">
-                <Sparkles className="w-8 h-8 text-blue-500 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold">Gemini</h3>
-                  <p className="text-sm text-slate-600">我々のメイン魔法。柔軟な対応力と強力な生成能力を持つ全知全能の秘書。</p>
+            <!-- Section 4: Tools -->
+            <section>
+                <h2 class="text-2xl font-bold text-amber-900 border-b-2 border-amber-300 pb-2 mb-4 flex items-center gap-2">
+                    <i data-lucide="wand-2" class="w-6 h-6"></i> 世界に存在する魔法（主要AIツール）
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm flex gap-3">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-blue-500 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold">Gemini</h3>
+                            <p class="text-sm text-slate-600">我々のメイン魔法。柔軟な対応力と強力な生成能力を持つ全知全能の秘書。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500 shadow-sm flex gap-3">
+                        <i data-lucide="library" class="w-8 h-8 text-teal-500 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold">NotebookLM</h3>
+                            <p class="text-sm text-slate-600">自分専用の図書館。資料を与え、それに基づいた専門特化の回答を引き出す。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-indigo-500 shadow-sm flex gap-3">
+                        <i data-lucide="search" class="w-8 h-8 text-indigo-500 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold">Perplexity</h3>
+                            <p class="text-sm text-slate-600">情報収集に特化した魔法。正確なソースを元に最新の情報を素早く見つけ出す。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500 shadow-sm flex gap-3">
+                        <i data-lucide="layout-dashboard" class="w-8 h-8 text-purple-500 flex-shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold">GenSpark</h3>
+                            <p class="text-sm text-slate-600">調査からまとめページ作成までを一気にこなす、次世代の強力なリサーチ魔法。</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div className="bg-white p-4 rounded-lg border-l-4 border-teal-500 shadow-sm flex gap-3">
-                <Library className="w-8 h-8 text-teal-500 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold">NotebookLM</h3>
-                  <p className="text-sm text-slate-600">自分専用の図書館。資料を与え、それに基づいた専門特化の回答を引き出す。</p>
-                </div>
-              </div>
-              <div className="bg-white p-4 rounded-lg border-l-4 border-indigo-500 shadow-sm flex gap-3">
-                <Search className="w-8 h-8 text-indigo-500 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold">Perplexity</h3>
-                  <p className="text-sm text-slate-600">情報収集に特化した魔法。正確なソースを元に最新の情報を素早く見つけ出す。</p>
-                </div>
-              </div>
-              <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500 shadow-sm flex gap-3">
-                <LayoutDashboard className="w-8 h-8 text-purple-500 flex-shrink-0" />
-                <div>
-                  <h3 className="font-bold">GenSpark</h3>
-                  <p className="text-sm text-slate-600">調査からまとめページ作成までを一気にこなす、次世代の強力なリサーチ魔法。</p>
-                </div>
-              </div>
-            </div>
-          </section>
+            </section>
 
         </div>
         
-        {/* Navigation */}
-        <div className="px-6 md:px-10 pb-8 text-left">
-          <a href="../index.html" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-100 text-amber-900 font-bold hover:bg-amber-200 transition-colors shadow-sm cursor-pointer border border-amber-300 group">
-            <span className="group-hover:-translate-x-1 transition-transform">◀</span> メインページに戻る
-          </a>
+        <!-- Navigation -->
+        <div class="px-6 md:px-10 pb-8 text-left">
+            <a href="../index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-100 text-amber-900 font-bold hover:bg-amber-200 transition-colors shadow-sm cursor-pointer border border-amber-300 group" style="text-decoration: none;">
+                <span class="group-hover:-translate-x-1 transition-transform">◀</span> メインページに戻る
+            </a>
         </div>
         
-        <footer className="bg-amber-900/10 p-4 text-center text-sm text-amber-900 border-t border-amber-200">
-          AI勉強会『ダツイチ！』© 2026
+        <footer class="bg-amber-900/10 p-4 text-center text-sm text-amber-900 border-t border-amber-200">
+            AI勉強会『ダツイチ！』© 2026
         </footer>
-      </div>
     </div>
-  );
-}
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
