@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ダツイチ！Day3 クエスト報告書</title>
-    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons (CDN) -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Custom Styles -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Shippori+Mincho:wght@500;700&display=swap');
         
-        body { 
-            font-family: 'Noto Sans JP', serif; 
-        }
+        body { font-family: 'Noto Sans JP', serif; }
         
         .parchment {
             background-color: #fdf6e3;
@@ -25,7 +20,6 @@
 <body class="bg-slate-900 p-4 md:p-8 flex justify-center min-h-screen text-slate-800">
 
     <div class="parchment w-full max-w-4xl rounded-sm shadow-2xl overflow-hidden border-4 border-purple-700 relative">
-        
         <!-- Header -->
         <header class="bg-purple-800 text-purple-50 p-6 text-center border-b-4 border-purple-900">
             <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3">
@@ -39,26 +33,27 @@
 
         <div class="p-6 md:p-10 space-y-10">
 
-            <!-- Intro Message Section -->
-            <section class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                <!-- Left Card: 1/5 width, square, no border, no shadow -->
-                <div class="w-24 md:w-1/5 aspect-square shrink-0 overflow-hidden">
-                    <img src="../images/erina-ai3.jpg" alt="エリナーAI_Day3" class="w-full h-full object-cover">
+            <!-- Character Speech Bubble Intro -->
+            <div class="flex flex-row items-center gap-4 md:gap-6">
+                <!-- Left Card (Square, 1:4 ratio) -->
+                <div class="w-1/5 aspect-square bg-[#eaf4e5] overflow-hidden flex-shrink-0">
+                     <img src="../images/erina-ai3.jpg" alt="エリナーAI_Day3" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- 右カード (吹き出し) -->
+                <!-- Right Card (Speech Bubble, 4:5 ratio) -->
                 <div class="w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
-                    <!-- 吹き出しの矢印 -->
+                    <!-- Speech Bubble Arrow -->
                     <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2"></div>
+                    
                     <p class="text-[#334155] font-bold leading-relaxed text-sm md:text-base">
-                        今回は、複数の魔法を組み合わせる高度な技と、<br>
-                        Canvasが登場した熱いクエストでしたね！<br>
+                        今回は、複数の魔法を組み合わせる高度な技と、<br />
+                        Canvasが登場した熱いクエストでしたね！<br />
                         この調子で「冒険者」への階段を一気に駆け上がりましょう！
                     </p>
                 </div>
             </div>
 
-            <!-- Section 1: クラスチェンジ -->
+            <!-- Section 1: Class Change -->
             <section class="text-center">
                 <div class="inline-block bg-white/80 px-8 py-4 rounded-xl shadow-md border-2 border-purple-400">
                     <h2 class="text-xl md:text-2xl font-bold flex items-center gap-3 justify-center text-purple-800">
@@ -69,7 +64,7 @@
                 </div>
             </section>
 
-            <!-- Section 2: AIのコントロール・分業 -->
+            <!-- Section 2: AI Control & Division of Labor -->
             <section class="bg-white/60 p-6 rounded-lg border border-purple-300 shadow-sm">
                 <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-300 pb-2 mb-6 flex items-center gap-2">
                     <i data-lucide="network" class="w-6 h-6"></i> 分業によるAIのコントロール
@@ -94,7 +89,7 @@
                     <!-- Good Example -->
                     <div class="flex-1 bg-purple-50 p-5 rounded-lg border-2 border-purple-300 shadow-md">
                         <h3 class="font-bold text-purple-800 mb-3 flex items-center gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5"></i> 役割を分割（分業）
+                            <i data-lucide="check-circle" class="w-5 h-5"></i> 役割を分割（分業）
                         </h3>
                         <p class="text-sm text-purple-900 mb-4">段階的に思考を深めさせるテクニックを活用し、高品質な指示書を短時間で作成！</p>
                         <div class="space-y-2">
@@ -110,7 +105,7 @@
                 </div>
             </section>
 
-            <!-- Section 3: コスト削減 -->
+            <!-- Section 3: Cost Reduction Alchemy -->
             <section class="bg-amber-50 p-6 rounded-lg border border-amber-300 shadow-sm relative overflow-hidden">
                 <div class="absolute -right-10 -bottom-10 opacity-10">
                     <i data-lucide="coins" class="w-48 h-48 text-amber-500"></i>
@@ -143,14 +138,13 @@
                 </div>
             </section>
 
-            <!-- Section 4: 最強の装備構成 -->
+            <!-- Section 4: The Ultimate Weapon -->
             <section class="text-center space-y-6">
                 <h2 class="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
                     <i data-lucide="sword" class="w-6 h-6"></i> 導き出された「最強の装備構成」
                 </h2>
                 
                 <div class="bg-gradient-to-r from-purple-800 to-indigo-900 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
-                    <!-- 背景のドット模様 -->
                     <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
                     
                     <div class="flex flex-col md:flex-row items-center justify-center gap-6 relative z-10">
@@ -180,16 +174,15 @@
                     </div>
                 </div>
             </section>
+
         </div>
         
-        <!-- Navigation -->
-        <div class="px-6 md:px-10 pb-8 text-left">
-            <a href="../index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-100 text-amber-900 font-bold hover:bg-amber-200 transition-colors shadow-sm cursor-pointer border border-amber-300 group">
-                <span class="group-hover:-translate-x-1 transition-transform">◀</span> メインページに戻る
+        <div class="px-6 md:px-10 pb-6 flex justify-start">
+            <a href="../index.html" class="inline-block bg-[#fff8d6] text-[#6b3a0f] px-6 py-2.5 rounded-full border border-[#ebd07d] font-bold text-sm md:text-base hover:bg-[#fff0b3] transition-colors">
+                ◀ メインページに戻る
             </a>
         </div>
 
-        <!-- Footer -->
         <footer class="bg-purple-900/10 p-4 text-center text-sm text-purple-900 border-t border-purple-200">
             AI勉強会『ダツイチ！』© 2026
         </footer>
