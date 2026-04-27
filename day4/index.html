@@ -40,17 +40,21 @@
 
         <div class="p-6 md:p-10 space-y-10">
 
-            <!-- 画像と吹き出しのセクション (追加箇所) -->
+            <!-- 画像と吹き出しのセクション -->
             <section class="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-                <!-- 左側：正方形の画像エリア (比率 1) -->
-                <div class="w-full md:w-1/5 flex-shrink-0 flex items-center justify-center bg-[#eef5ed] aspect-square overflow-hidden">
+                <!-- 左側：正方形の画像エリア -->
+                <div class="w-full md:w-1/5 flex-shrink-0 flex items-center justify-center bg-[#eef5ed] aspect-square overflow-hidden rounded-lg">
+                    <!-- 画像パスはご指定のままにしています -->
                     <img src="../images/erina-ai4.jpg" alt="エリナーAI_Day4" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- Right Card (Speech Bubble, 4:5 ratio) -->
-                <div class="w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
-                    <!-- Speech Bubble Arrow -->
-                    <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2"></div>
+                <!-- Right Card (Speech Bubble) -->
+                <div class="w-full md:w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
+                    <!-- Speech Bubble Arrow (Desktop) -->
+                    <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2 hidden md:block"></div>
+                    
+                    <!-- Speech Bubble Arrow (Mobile) -->
+                    <div class="absolute -top-3 left-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-b-[12px] border-b-white border-r-[10px] border-r-transparent transform -translate-x-1/2 md:hidden"></div>
                     
                     <p class="text-slate-800 font-bold leading-relaxed">
                         ついに私、エリナーAIの秘密も明かされてしまいましたね（照） <br>
@@ -58,7 +62,7 @@
                         どんな武器を作ろうか、考えるだけでワクワクしますね✨
                     </p>
                 </div>
-            </div>
+            </section>
 
             <!-- Section 1: Class Change -->
             <section class="text-center">
@@ -96,7 +100,7 @@
                         <p class="text-xs text-slate-600 mt-2">最新の資料や知識を連携<br><span class="font-bold text-rose-600">※ドライブ更新で知識も自動アップデート！</span></p>
                     </div>
 
-                    <div class="text-3xl font-bold text-rose-500"><i data-lucide="arrow-right" class="w-8 h-8"></i></div>
+                    <div class="text-3xl font-bold text-rose-500 transform rotate-90 md:rotate-0"><i data-lucide="arrow-right" class="w-8 h-8"></i></div>
 
                     <!-- Custom Gem -->
                     <div class="bg-rose-50 p-4 rounded-lg border-2 border-rose-400 text-center w-full md:w-1/3 shadow-md">
@@ -149,21 +153,21 @@
                         <i data-lucide="lightbulb" class="w-5 h-5"></i> 紹介された実用事例
                     </h3>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm">
-                            <i data-lucide="layout-template" class="w-5 h-5 mx-auto mb-1 text-purple-500"></i>
-                            レイアウト<br>インテグレーター
+                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm flex flex-col items-center justify-center">
+                            <i data-lucide="layout-template" class="w-5 h-5 mb-1 text-purple-500"></i>
+                            <span>レイアウト<br>インテグレーター</span>
                         </div>
-                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm">
-                            <i data-lucide="file-text" class="w-5 h-5 mx-auto mb-1 text-blue-500"></i>
-                            議事録作成<br>アシスタント
+                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm flex flex-col items-center justify-center">
+                            <i data-lucide="file-text" class="w-5 h-5 mb-1 text-blue-500"></i>
+                            <span>議事録作成<br>アシスタント</span>
                         </div>
-                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm">
-                            <i data-lucide="mail" class="w-5 h-5 mx-auto mb-1 text-red-500"></i>
-                            Gmailからの<br>タスク抽出
+                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm flex flex-col items-center justify-center">
+                            <i data-lucide="mail" class="w-5 h-5 mb-1 text-red-500"></i>
+                            <span>Gmailからの<br>タスク抽出</span>
                         </div>
-                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm">
-                            <i data-lucide="workflow" class="w-5 h-5 mx-auto mb-1 text-emerald-500"></i>
-                            GAS連携による<br>自動化
+                        <div class="bg-white p-2 rounded border border-rose-100 text-center text-sm text-slate-600 shadow-sm flex flex-col items-center justify-center">
+                            <i data-lucide="workflow" class="w-5 h-5 mb-1 text-emerald-500"></i>
+                            <span>GAS連携による<br>自動化</span>
                         </div>
                     </div>
                 </div>
@@ -172,7 +176,7 @@
             <!-- Section 4: Mindset -->
             <section class="text-center">
                 <div class="inline-block bg-gradient-to-r from-rose-900 to-red-900 text-rose-50 px-8 py-6 rounded-2xl shadow-xl border-2 border-rose-400 w-full md:w-4/5 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+                    <div class="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E');"></div>
                     
                     <h2 class="text-xl md:text-2xl font-bold flex items-center justify-center gap-2 mb-4 relative z-10">
                         <i data-lucide="brain-circuit" class="w-8 h-8 text-amber-400"></i>
@@ -192,7 +196,7 @@
                 </div>
             </section>
 
-            <!-- 戻るボタン (追加箇所) -->
+            <!-- 戻るボタン -->
             <div class="flex justify-start">
                 <a href="../index.html#day4" class="inline-flex items-center bg-[#fdf5d3] border border-[#e8c97e] text-[#865d1d] font-bold py-2 px-6 rounded-full hover:bg-[#faebad] transition-colors shadow-sm">
                     ◀ メインページに戻る
