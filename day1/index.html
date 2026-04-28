@@ -8,7 +8,16 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;700&display=swap');
-        body { font-family: 'Noto Sans JP', sans-serif; }
+        
+        body { 
+            font-family: 'Noto Sans JP', sans-serif; 
+        }
+        
+        /* タイトルなどに明朝体を適用するためのクラス */
+        .font-serif-ja {
+            font-family: 'Shippori Mincho', serif;
+        }
+
         .parchment {
             background-color: #fdf6e3;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
@@ -20,7 +29,7 @@
     <div class="parchment w-full max-w-4xl rounded-sm shadow-2xl overflow-hidden border-4 border-amber-700 relative">
         <!-- Header -->
         <header class="bg-amber-800 text-amber-50 p-6 text-center border-b-4 border-amber-900">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3" style="font-family: 'Noto Sans JP', serif;">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-3 font-serif-ja">
                 <i data-lucide="swords" class="w-8 h-8"></i>
                 ダツイチ！Day1 クエスト報告書
                 <i data-lucide="swords" class="w-8 h-8"></i>
@@ -32,16 +41,19 @@
         <div class="p-6 md:p-10 space-y-10">
 
             <!-- Intro Message Section -->
-            <section class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                <!-- Left Card: 1/5 width, square, no border, no shadow -->
-                <div class="w-24 md:w-1/5 aspect-square shrink-0 overflow-hidden">
+            <section class="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                <!-- 左側：正方形の画像エリア -->
+                <div class="w-full md:w-1/5 flex-shrink-0 flex items-center justify-center bg-[#eef5ed] aspect-square overflow-hidden rounded-lg">
                     <img src="../images/erina-ai1.jpg" alt="エリナーAI_Day1" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- Right Card (Speech Bubble, 4:5 ratio) -->
-                <div class="w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
-                    <!-- Speech Bubble Arrow -->
-                    <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2"></div>
+                <!-- Right Card (Speech Bubble) -->
+                <div class="w-full md:w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
+                    <!-- Speech Bubble Arrow (Desktop) -->
+                    <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2 hidden md:block"></div>
+                    
+                    <!-- Speech Bubble Arrow (Mobile) -->
+                    <div class="absolute -top-3 left-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-b-[12px] border-b-white border-r-[10px] border-r-transparent transform -translate-x-1/2 md:hidden"></div>
                     
                     <p class="text-slate-800 font-bold leading-relaxed">
                         冒険者の皆さん、ようこそ！記念すべき最初の旅立ち！<br>
@@ -58,14 +70,14 @@
                 </h2>
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="flex items-start gap-3">
-                        <div class="bg-red-100 p-2 rounded-full text-red-700"><i data-lucide="flame" class="w-6 h-6"></i></div>
+                        <div class="bg-red-100 p-2 rounded-full text-red-700 shrink-0"><i data-lucide="flame" class="w-6 h-6"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">AI博覧会の熱狂</h3>
                             <p class="text-sm text-slate-600">世間の関心は最高潮。しかし、多くの人が「AIを使いこなせる層」と「そうでない層」の二極化に焦燥感を抱いている。</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="bg-blue-100 p-2 rounded-full text-blue-700"><i data-lucide="trending-down" class="w-6 h-6"></i></div>
+                        <div class="bg-blue-100 p-2 rounded-full text-blue-700 shrink-0"><i data-lucide="trending-down" class="w-6 h-6"></i></div>
                         <div>
                             <h3 class="font-bold text-lg">デザイン業界の試練</h3>
                             <p class="text-sm text-slate-600">AI活用の普及により、顧客から単価引き下げの圧力が。ただの作業者ではなく、新たな価値創造が急務に。</p>
@@ -78,7 +90,7 @@
             <section class="text-center">
                 <div class="inline-block bg-amber-900 text-amber-50 px-8 py-4 rounded-full shadow-lg border-2 border-amber-500">
                     <h2 class="text-xl md:text-2xl font-bold flex items-center gap-3 justify-center">
-                        <i data-lucide="target" class="w-8 h-8 text-amber-400"></i>
+                        <i data-lucide="target" class="w-8 h-8 text-amber-400 shrink-0"></i>
                         ギルドのミッション：『脱・一般利用（ダツイチ）』
                     </h2>
                     <p class="mt-2 text-amber-200">AIを単なる「検索窓」にするステージを卒業し、<br>思考を拡張する「相棒」へ進化させる！</p>
@@ -97,23 +109,23 @@
                     <div class="space-y-8 relative">
                         <!-- Lv 0 -->
                         <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
-                            <div class="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
+                            <div class="w-full md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
                                 <h3 class="font-bold text-lg text-slate-500">Lv0: 村人 (スタート地点)</h3>
                                 <p class="text-sm">参加者の多くが位置する「アラウンド一般人」。生成AIを検索代わりやおしゃべり相手として使っている状態。</p>
                             </div>
-                            <div class="w-10 h-10 bg-slate-400 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white">
+                            <div class="w-10 h-10 bg-slate-400 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shrink-0">
                                 <i data-lucide="user" class="w-5 h-5"></i>
                             </div>
-                            <div class="md:w-5/12 hidden md:block"></div>
+                            <div class="hidden md:block md:w-5/12"></div>
                         </div>
 
                         <!-- Lv 1 -->
                         <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
-                            <div class="md:w-5/12 hidden md:block"></div>
-                            <div class="w-10 h-10 bg-emerald-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-emerald-200">
+                            <div class="hidden md:block md:w-5/12"></div>
+                            <div class="w-10 h-10 bg-emerald-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-emerald-200 shrink-0">
                                 <i data-lucide="book-open" class="w-5 h-5"></i>
                             </div>
-                            <div class="md:w-5/12 text-left pl-16 md:pl-8">
+                            <div class="w-full md:w-5/12 text-left pl-16 md:pl-8">
                                 <h3 class="font-bold text-lg text-emerald-700">Lv1: 見習い</h3>
                                 <p class="text-sm">魔法（ツール）の種類を知り、自分自身の言葉で基本の詠唱（プロンプト）ができるようになる。</p>
                             </div>
@@ -121,23 +133,23 @@
 
                         <!-- Lv 2 -->
                         <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
-                            <div class="md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
+                            <div class="w-full md:w-5/12 text-left md:text-right pl-16 md:pl-0 pr-4">
                                 <h3 class="font-bold text-lg text-blue-700">Lv2: 探索者</h3>
                                 <p class="text-sm">テキスト、画像、データを組み合わせ、目的達成のために複数の魔法を連携できるようになる。</p>
                             </div>
-                            <div class="w-10 h-10 bg-blue-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-blue-200">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full border-4 border-amber-100 flex items-center justify-center z-10 absolute left-3 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-md shadow-blue-200 shrink-0">
                                 <i data-lucide="compass" class="w-5 h-5"></i>
                             </div>
-                            <div class="md:w-5/12 hidden md:block"></div>
+                            <div class="hidden md:block md:w-5/12"></div>
                         </div>
 
                         <!-- Lv 3 -->
                         <div class="flex flex-col md:flex-row items-center md:justify-between w-full">
-                            <div class="md:w-5/12 hidden md:block"></div>
-                            <div class="w-12 h-12 bg-amber-600 rounded-full border-4 border-amber-200 flex items-center justify-center z-10 absolute left-2 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-lg shadow-amber-300">
+                            <div class="hidden md:block md:w-5/12"></div>
+                            <div class="w-12 h-12 bg-amber-600 rounded-full border-4 border-amber-200 flex items-center justify-center z-10 absolute left-2 md:left-1/2 transform md:-translate-x-1/2 text-white shadow-lg shadow-amber-300 shrink-0">
                                 <i data-lucide="crown" class="w-6 h-6"></i>
                             </div>
-                            <div class="md:w-5/12 text-left pl-16 md:pl-8">
+                            <div class="w-full md:w-5/12 text-left pl-16 md:pl-8">
                                 <h3 class="font-bold text-xl text-amber-800">Lv3: 冒険者 (最終目標)</h3>
                                 <p class="text-sm">自分だけの武器「カスタムGem（独自エージェント）」を錬成し、日々の業務や価値創造の相棒とする！</p>
                             </div>
@@ -197,6 +209,7 @@
         </footer>
     </div>
 
+    <!-- アイコン描画用のスクリプト -->
     <script>
         lucide.createIcons();
     </script>
