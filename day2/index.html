@@ -32,16 +32,19 @@
         <div class="p-6 md:p-10 space-y-10">
 
             <!-- Intro Message Section -->
-            <section class="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-                <!-- Left Card: 1/5 width, square, no border, no shadow -->
-                <div class="w-24 md:w-1/5 aspect-square shrink-0 overflow-hidden">
+            <section class="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+                <!-- 左側：正方形の画像エリア -->
+                <div class="w-full md:w-1/5 flex-shrink-0 flex items-center justify-center bg-[#eef5ed] aspect-square overflow-hidden rounded-lg">
+                    <!-- 画像パス（arina-ai2.jpgとしています） -->
                     <img src="../images/erina-ai2.jpg" alt="エリナーAI_Day2" class="w-full h-full object-cover">
                 </div>
                 
-                <!-- Right Card (Speech Bubble, 4:5 ratio) -->
-                <div class="w-4/5 bg-white rounded-3xl p-4 md:p-6 relative">
+                <!-- Right Card (Speech Bubble) -->
+                <div class="w-full md:w-4/5 bg-white rounded-3xl p-4 md:p-6 relative text-left mt-2 md:mt-0">
                     <!-- Speech Bubble Arrow -->
-                    <div class="absolute top-1/2 -left-3 md:-left-4 w-0 h-0 border-t-[10px] md:border-t-[16px] border-t-transparent border-r-[12px] md:border-r-[16px] border-r-white border-b-[10px] md:border-b-[16px] border-b-transparent transform -translate-y-1/2"></div>
+                    <!-- スマホレイアウト時は上向き、PCレイアウト時は左向きの矢印に切り替え -->
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 border-l-[12px] border-r-[12px] border-b-[14px] border-l-transparent border-r-transparent border-b-white 
+                               md:top-1/2 md:auto md:left-auto md:-translate-x-0 md:-left-4 md:-translate-y-1/2 md:border-l-0 md:border-r-[16px] md:border-t-[16px] md:border-b-[16px] md:border-t-transparent md:border-b-transparent md:border-r-white"></div>
                     
                     <p class="text-slate-800 font-bold leading-relaxed">
                         「村人」から「見習い」へのクラスチェンジ、<br>
