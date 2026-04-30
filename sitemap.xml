@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- トップページ -->
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/</loc>
+    <priority>1.0</priority>
+  </url>
+  <!-- 各日程のページ（例：day1〜day5） -->
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/day1/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/day2/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/day3/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/day4/</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shirazirashii.github.io/Datsuichi-memorial/day5/</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
