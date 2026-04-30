@@ -287,7 +287,7 @@
       <div style="padding: 10px 20px; background: var(--blue-deep); display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
         <img src="images/hero2.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" onerror="this.style.display='none'" />
       </div>
-      <button id="quest-start-btn" style="display:none;position:absolute;bottom:18px;right:18px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:0.85rem;padding:8px 18px;cursor:pointer;letter-spacing:.1em;box-shadow:none;opacity:0;transition:opacity 0.8s ease;">▶ QUEST START</button>
+      <button id="quest-start-btn" style="display:none;position:absolute;bottom:18px;right:10%;background:transparent;border:none;border-bottom:2px solid var(--gold);color:var(--gold);font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:0.85rem;padding:8px 4px;cursor:pointer;letter-spacing:.1em;box-shadow:none;clip-path:inset(0 100% 0 0);transition:clip-path 0.8s ease;">▶ QUEST START</button>
     </div>
     <p class="hero-sub fade-in">
       ビジネスの最前線を走る私たちが、<br />
@@ -296,10 +296,10 @@
       全6回の冒険の記録。
     </p>
     <div class="hero-nav fade-in" style="position: relative; z-index: 10; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px;">
-      <a href="#intro" class="pixel-btn" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">プロローグ</a>
-      <a href="#adventure" class="pixel-btn" onclick="document.querySelector('#adventure').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">冒険の記録</a>
-      <a href="#party" class="pixel-btn" onclick="document.querySelector('#party').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">ギルドマスター</a>
-      <a href="#ending" class="pixel-btn" onclick="document.querySelector('#ending').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">エンディング</a>
+      <a href="#intro" class="pixel-btn" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.2rem); text-decoration: underline; text-underline-offset: 4px;">プロローグ</a>
+      <a href="#adventure" class="pixel-btn" onclick="document.querySelector('#adventure').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.2rem); text-decoration: underline; text-underline-offset: 4px;">冒険の記録</a>
+      <a href="#party" class="pixel-btn" onclick="document.querySelector('#party').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.2rem); text-decoration: underline; text-underline-offset: 4px;">ギルドマスター</a>
+      <a href="#ending" class="pixel-btn" onclick="document.querySelector('#ending').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.2rem); text-decoration: underline; text-underline-offset: 4px;">エンディング</a>
     </div>
   </div>
 
@@ -602,7 +602,7 @@
   </div>
 
   <footer>
-    AI勉強会『ダツイチ！』© 2026
+    <i class="fa-solid fa-khanda"></i>AI勉強会『ダツイチ！』© 2026
   </footer>
 
   <script>
