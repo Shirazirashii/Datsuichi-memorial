@@ -99,7 +99,7 @@
       text-align:center;margin-bottom:10px;line-height:1.3;
     }
     .hero-sub{
-      color:#cce0ff;font-size:clamp(1rem, 3.5vw, 1.6rem);
+      color:#cce0ff;font-size:clamp(1rem, 3.5vw, 1.4rem);
       text-align:center;margin-bottom:24px;line-height:1.8;max-width:560px;
     }
     .hero-tag{
@@ -283,10 +283,11 @@
       AI勉強会『ダツイチ！』<br />
       <span style="font-size: .65em; color: #cce0ff; white-space: normal;">〜村人から始まった冒険の軌跡〜</span>
     </h1>
-    <div class="hero-image-wrap fade-in">
+    <div class="hero-image-wrap fade-in" style="position:relative;">
       <div style="padding: 10px 20px; background: var(--blue-deep); display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
         <img src="images/hero2.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" onerror="this.style.display='none'" />
       </div>
+      <button id="quest-start-btn" style="display:none;position:absolute;bottom:18px;right:18px;background:transparent;border:2px solid var(--gold);color:var(--gold);font-family:'Noto Sans JP',sans-serif;font-weight:900;font-size:0.85rem;padding:8px 18px;cursor:pointer;letter-spacing:.1em;box-shadow:none;opacity:0;transition:opacity 0.8s ease;">▶ QUEST START</button>
     </div>
     <p class="hero-sub fade-in">
       ビジネスの最前線を走る私たちが、<br />
@@ -295,10 +296,10 @@
       全6回の冒険の記録。
     </p>
     <div class="hero-nav fade-in" style="position: relative; z-index: 10; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px;">
-      <a href="#intro" class="pixel-btn" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">プロローグ</a>
-      <a href="#adventure" class="pixel-btn" onclick="document.querySelector('#adventure').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">冒険の記録</a>
-      <a href="#party" class="pixel-btn" onclick="document.querySelector('#party').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">ギルドマスター</a>
-      <a href="#ending" class="pixel-btn" onclick="document.querySelector('#ending').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: 0.9rem; text-decoration: underline; text-underline-offset: 4px;">エンディング</a>
+      <a href="#intro" class="pixel-btn" onclick="document.querySelector('#intro').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">プロローグ</a>
+      <a href="#adventure" class="pixel-btn" onclick="document.querySelector('#adventure').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">冒険の記録</a>
+      <a href="#party" class="pixel-btn" onclick="document.querySelector('#party').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">ギルドマスター</a>
+      <a href="#ending" class="pixel-btn" onclick="document.querySelector('#ending').scrollIntoView({ behavior: 'smooth' }); return false;" style="background: transparent; color: var(--gold); border: none; box-shadow: none; padding: 10px 20px; font-size: clamp(1rem, 3.5vw, 1.4rem); text-decoration: underline; text-underline-offset: 4px;">エンディング</a>
     </div>
   </div>
 
@@ -590,6 +591,16 @@
     </div>
   </div>
 
+  <!-- QUEST START OVERLAY -->
+  <div id="quest-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;align-items:center;justify-content:center;">
+    <div style="position:relative;width:90%;max-width:860px;">
+      <div id="yt-container" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border:4px solid var(--gold-dark);box-shadow:0 0 40px rgba(255,215,0,0.4);">
+        <iframe id="yt-iframe" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+      </div>
+      <button id="overlay-close" style="position:absolute;top:-20px;right:-20px;background:var(--blue-deep);color:var(--gold);border:3px solid var(--gold);font-size:1.2rem;font-weight:900;width:40px;height:40px;cursor:pointer;display:none;">✕</button>
+    </div>
+  </div>
+
   <footer>
     AI勉強会『ダツイチ！』© 2026
   </footer>
@@ -647,6 +658,55 @@
           shareMenu.style.display = 'none';
         }
       });
+    }
+
+    // QUEST START Button — appear after 3s
+    const questBtn = document.getElementById('quest-start-btn');
+    if (questBtn) {
+      setTimeout(() => {
+        questBtn.style.display = 'block';
+        requestAnimationFrame(() => { questBtn.style.opacity = '1'; });
+      }, 3000);
+
+      const overlay = document.getElementById('quest-overlay');
+      const iframe = document.getElementById('yt-iframe');
+      const closeBtn = document.getElementById('overlay-close');
+      const YT_ID = 'QVK0rpqXml0';
+
+      questBtn.addEventListener('click', () => {
+        overlay.style.display = 'flex';
+        iframe.src = `https://www.youtube.com/embed/${YT_ID}?autoplay=1&enablejsapi=1`;
+      });
+
+      // YouTube IFrame API for end-event
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+
+      window.onYouTubeIframeAPIReady = function() {
+        new YT.Player('yt-iframe', {
+          events: {
+            onStateChange: (e) => {
+              if (e.data === YT.PlayerState.ENDED) {
+                closeOverlay();
+              }
+              // Show close button once playing
+              if (e.data === YT.PlayerState.PLAYING) {
+                closeBtn.style.display = 'block';
+              }
+            }
+          }
+        });
+      };
+
+      function closeOverlay() {
+        overlay.style.display = 'none';
+        iframe.src = '';
+        closeBtn.style.display = 'none';
+      }
+
+      closeBtn.addEventListener('click', closeOverlay);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) closeOverlay(); });
     }
   </script>
 </body>
