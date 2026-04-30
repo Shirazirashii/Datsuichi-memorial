@@ -275,11 +275,6 @@
 </head>
 <body>
 
-  <!-- VIDEO MODAL -->
-  <div id="video-modal">
-    <video id="modal-video" src="images/Datsuichi-glowing.mp4" style="max-width:90vw;max-height:90vh;outline:none;" playsinline></video>
-  </div>
-
   <!-- HERO -->
   <div id="hero">
     <div class="hero-bg"></div>
@@ -290,9 +285,8 @@
     </h1>
     <div class="hero-image-wrap fade-in">
       <div style="padding: 10px 20px; background: var(--blue-deep); display: flex; align-items: center; justify-content: center; text-align: center; color: #aaa;">
-        <img id="hero-img" src="images/hero2.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto; cursor: pointer;" onerror="this.style.display='none'" />
+        <img src="images/hero2.jpg" alt="ヒーローヴィジュアル" style="max-width: 100%; height: auto;" onerror="this.style.display='none'" />
       </div>
-
     </div>
     <p class="hero-sub fade-in">
       ビジネスの最前線を走る私たちが、<br />
@@ -652,26 +646,6 @@
         } else {
           shareMenu.style.display = 'none';
         }
-      });
-    }
-
-    // Hero Image → Video Modal
-    const heroImg = document.getElementById('hero-img');
-    const modal = document.getElementById('video-modal');
-    const vid = document.getElementById('modal-video');
-    if (heroImg && modal && vid) {
-      heroImg.addEventListener('click', () => {
-        modal.style.display = 'flex';
-        vid.currentTime = 0;
-        vid.play();
-      });
-      vid.addEventListener('ended', () => {
-        modal.style.display = 'none';
-        vid.pause();
-      });
-      modal.addEventListener('click', () => {
-        modal.style.display = 'none';
-        vid.pause();
       });
     }
   </script>
