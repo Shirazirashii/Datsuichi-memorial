@@ -667,9 +667,11 @@
     const questBtn = document.getElementById('quest-start-btn');
     if (questBtn) {
       setTimeout(() => {
-        questBtn.style.display = 'block';
-        requestAnimationFrame(() => { questBtn.style.opacity = '1'; });
-      }, 3000);
+  questBtn.style.display = 'block';
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => { questBtn.style.clipPath = 'inset(0 0% 0 0)'; });
+  });
+}, 3000);
 
       const overlay = document.getElementById('quest-overlay');
       const iframe = document.getElementById('yt-iframe');
