@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI勉強会「ダツイチ！」 総合成果レポート</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chart.js DataLabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -58,7 +55,7 @@
                     <i data-lucide="users" class="w-6 h-6 md:w-8 md:h-8 text-white"></i>
                 </div>
                 <p class="text-white/90 text-sm md:text-base lg:text-lg max-w-2xl mx-auto mt-2 font-medium">
-                    〜 Day1~Day5までのクエストがもたらした、12名の行動変容と実務実装への軌跡 〜
+                    〜 Day5までのクエストがもたらした、ギルドメンバー12名の行動変容 〜
                 </p>
                 <p class="text-white/80 text-xs md:text-sm mt-3">開催日: 2026年5月9日</p>
             </header>
@@ -66,8 +63,8 @@
             <!-- Intro Speech Bubble -->
             <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 mb-12">
                 <!-- Left Card (Character Image) -->
-                <div class="w-1/2 sm:w-1/3 md:w-1/5 max-w-[160px] flex-shrink-0 flex items-center justify-center bg-transparent aspect-square overflow-hidden rounded-lg">
-                    <img src="../images/erina-ai5.jpg" alt="キャラクター" class="w-full h-full object-cover">
+                <div class="w-2/3 sm:w-1/2 md:w-1/5 flex-shrink-0 flex items-center justify-center bg-[#eef5ed] aspect-square overflow-hidden rounded-full md:rounded-lg shadow-sm md:shadow-none">
+                    <img src="../images/erina-ai6.jpg" alt="エリナーAI_Day6" class="w-full h-full object-cover">
                 </div>
                 
                 <!-- Right Card (Speech Bubble) -->
@@ -123,7 +120,7 @@
                                 <div class="flex items-start space-x-3">
                                     <i data-lucide="bar-chart-2" class="w-5 h-5 text-indigo-500 mt-0.5 flex-shrink-0"></i>
                                     <p class="text-sm text-indigo-900 font-medium leading-relaxed" id="insight-text">
-                                        <strong>インサイト:</strong> 厳格な再集計の結果、Day5修了後にボリュームゾーンが「Lv0（村人）」から「Lv2〜Lv3（探索者・冒険者）」へと劇的にシフトしました。これは、参加者の多くが複数のAIツールを組み合わせ、実務で強力なアウトプットを出し始めたことを意味する非常にポジティブな成果です。さらに、Lv0に留まった3名も実態としては<strong>「Lv0.5」と呼ぶべき生産性の高い状態</strong>にあり、組織全体として<strong>「全く使えない層」がゼロになった</strong>ことがこのデータの真の価値です。
+                                        <strong>厳格な再集計の結果、Day5修了後にボリュームゾーンが「Lv0（村人）」から「Lv2〜Lv3（探索者・冒険者）」へと劇的にシフトしました。これは、参加者の多くが複数のAIツールを組み合わせ、実務で強力なアウトプットを出し始めたことを意味する非常にポジティブな成果です。さらに、Lv0に留まった3名も実態としては<strong>「Lv0.5」と呼ぶべき生産性の高い状態</strong>にあり、組織全体として<strong>「全く使えない層」がゼロになった</strong>ことがこのデータの真の価値です。
                                     </p>
                                 </div>
                             </div>
@@ -221,7 +218,7 @@
                         </div>
 
                         <div class="mt-6 bg-slate-50 rounded-xl p-4 text-xs text-slate-600 border border-slate-100">
-                            <p><strong>インサイト：</strong> 全体の50%（6名）が週3時間以上の削減を達成。特筆すべきは「Lv0.5層」からも週3〜5時間の削減者が出ている点です。ツールの数を増やす以上に、<strong>「一つの強力なワークフローを定着させること」</strong>が初期段階の生産性向上に極めて効果的であると示唆しています。</p>
+                            <p><strong>全体の50%（6名）が週3時間以上の削減を達成。特筆すべきは「Lv0.5層」からも週3〜5時間の削減者が出ている点です。ツールの数を増やす以上に、<strong>「一つの強力なワークフローを定着させること」</strong>が初期段階の生産性向上に極めて効果的であると示唆しています。</p>
                         </div>
                     </div>
 
@@ -242,7 +239,7 @@
                         </div>
 
                         <div class="mt-6 bg-slate-50 rounded-xl p-4 text-xs text-slate-600 border border-slate-100">
-                            <p><strong>インサイト：</strong> 8割以上がDay2（NotebookLM）を挙げている事実は、この勉強会の<strong>「勝利の方程式」</strong>がドキュメント処理にあったことを示しています。応用へ進む前に得られた「爆速で資料ができる」成功体験が、AIへの心理的ハードルを完全に破壊したと分析できます。</p>
+                            <p><strong> 8割以上がDay2（NotebookLM）を挙げている事実は、この勉強会の<strong>「勝利の方程式」</strong>がドキュメント処理にあったことを示しています。応用へ進む前に得られた「爆速で資料ができる」成功体験が、AIへの心理的ハードルを完全に破壊したと分析できます。</p>
                         </div>
                     </div>
                 </div>
@@ -279,8 +276,7 @@
                                 <i data-lucide="quote" class="absolute -top-4 -right-4 w-24 h-24 text-purple-100 opacity-50 transform rotate-12"></i>
                                 <h4 class="text-lg font-black text-purple-900 mb-4 relative z-10">組織を牽引する次なるステージへ</h4>
                                 <p class="text-sm text-slate-700 leading-relaxed relative z-10 space-y-4">
-                                    <strong>インサイト：</strong><br>
-                                    「AIエージェント（9名）」への圧倒的な関心は、参加者が単に<strong>「AIを使う」段階から「AIを自分の分身にする」フェーズ</strong>へ明確に移行したがっている証拠です。
+                                    <strong>「AIエージェント（9名）」への圧倒的な関心は、参加者が単に<strong>「AIを使う」段階から「AIを自分の相棒にする」フェーズ</strong>に移行しようとしている明確なサインです。
                                     <br><br>
                                     さらに特筆すべきは、「知見をメンバーに広めたい（3名）」という意欲の芽生えです。これは、今回の勉強会が単なる個人スキルの向上を超え、社内文化を変革する<strong>「チェンジエージェント（変革の牽引者）」</strong>を輩出し始めている力強いシグナルと言えます。
                                 </p>
@@ -306,7 +302,7 @@
     <footer class="bg-[#f8f4ff] py-4 w-full border-t border-[#cbd5e1] mt-auto">
         <div class="flex items-center justify-center gap-2 text-slate-600 text-sm font-medium">
             <i data-lucide="sword" class="w-4 h-4"></i>
-            <span>AI勉強会『ダツイチ！』 © 2026</span>
+            <span><i class="fa-solid fa-khanda"></i> AI勉強会『ダツイチ！』 © 2026</span>
         </div>
     </footer>
 
